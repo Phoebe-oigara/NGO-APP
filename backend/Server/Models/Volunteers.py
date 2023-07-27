@@ -7,7 +7,7 @@ class Volunteers(db.Model):
     __tablename__ = 'volunteers'
 
     id = db.Column(db.Integer, primary_key=True)
-    ngotb_Id = db.Column(db.Integer, nullable=False)  
+    ngotb_Id = db.Column(db.Integer, db.ForeignKey('ngotb.id'))  
     description = db.Column(db.Text, nullable=False)  
     role = db.Column(db.String(100), nullable=False)  
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
