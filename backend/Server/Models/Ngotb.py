@@ -1,6 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func
 from sqlalchemy.orm import validates
+from urllib.parse import urlparse
+
 import re
 from app import db 
 
@@ -42,6 +44,13 @@ class NGO(db.Model):
         assert any(char.isdigit() for char in password), "Password must contain at least one number."
         assert re.search(r'[!@#$%^&*()-_=+{};:,<.>]', password), "Password must contain at least one symbol."
         return password
+    
+    @validates('url')
+    def validate_url(self, key, url):
+        parsed_url = urlparse(url)
+        if not all([parsed_url.scheme, parsed_url.netloc]):
+            raise AssertionError("Invalid URL. Please provide a valid URL with a scheme (e.g., http, https) and netloc.")
+        return url
     
     def __repr__(self):
         return (
