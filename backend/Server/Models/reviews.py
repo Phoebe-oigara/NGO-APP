@@ -5,7 +5,7 @@ import re
 from app import db 
 
 
-class reviews(db.Model):
+class Reviews(db.Model):
     __tablename__="reviews"
 
     

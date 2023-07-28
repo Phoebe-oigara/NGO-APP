@@ -4,7 +4,7 @@ from flask import request
 from app import db
 
 
-# api request for customers
+# api request for users
 
 class GetAllUsers(Resource):
     def get(self):
