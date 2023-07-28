@@ -1,6 +1,6 @@
 from flask_restful import Resource, reqparse
 from app import db
-from models import Reviews
+from Server.Models.reviews import Reviews
 
 class GetAllReviews(Resource):
     def get(self):
@@ -13,20 +13,10 @@ class GetAllReviews(Resource):
         } for review in reviews]
 
         return {'reviews': reviews_list}, 200
+    
 
-class ReviewsResource(Resource):
-    def get(self, review_id):
-        review = Reviews.query.get(review_id)
-        if review:
-            return {
-                "id": review.id,
-                "user_id": review.user_id,
-                "ngotb_id": review.ngotb_id,
-                "review": review.review
-            }, 200
-        else:
-            return {"error": "Review not found"}, 404
-
+class AddReview(Resource):
+    
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('user_id', type=int, required=True, help="User ID is required.")
@@ -43,6 +33,20 @@ class ReviewsResource(Resource):
         db.session.commit()
 
         return {'message': 'Review added successfully'}, 201
+
+class ReviewsResource(Resource):
+    def get(self, review_id):
+        review = Reviews.query.get(review_id)
+        if review:
+            return {
+                "id": review.id,
+                "user_id": review.user_id,
+                "ngotb_id": review.ngotb_id,
+                "review": review.review
+            }, 200
+        else:
+            return {"error": "Review not found"}, 404
+
 
     def patch(self, review_id):
         review = Reviews.query.get(review_id)
