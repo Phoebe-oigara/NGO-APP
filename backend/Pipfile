@@ -4,29 +4,15 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-
-flask-sqlalchemy = "*"
-sqlalchemy = "*"
-bcrypt = "*"
-
-
 flask = "*"
-flask-sqlalchemy = "*"
-blueprint = "*"
 flask-restful = "*"
+blueprint = "*"
+flask-sqlalchemy = "*"
+bcrypt = "*"
 flask-migrate = "*"
-
 
 [dev-packages]
 
 [requires]
 python_version = "3.10"
-
 python_full_version = "3.10.6"
-
-
-python_full_version = "3.10.6"
-
-python_version = "3.11"
-development
-

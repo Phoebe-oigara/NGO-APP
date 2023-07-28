@@ -1,0 +1,10 @@
+# Ignore Pipenv files
+Pipfile
+Pipfile.lock
+
+
+
+# Ignore Python dependencies (if using virtualenv, venv, or similar)
+# Adjust this line based on the folder where the dependencies are stored.
+
+venv/
