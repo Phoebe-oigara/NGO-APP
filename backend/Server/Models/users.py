@@ -8,7 +8,7 @@ import re
 class Users(db.Model):
     __tablename__ = "users"
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     fullname = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(70), unique=True, nullable=False)
     password = db.Column(db.String, unique=True, nullable=False)
