@@ -11,5 +11,9 @@ class Successes(db.Model):
     image = db.Column(db.LargeBinary, nullable=True)
     description = db.Column(db.Text, nullable=False)
 
+    ngotb_id = db.Column(db.Integer, db.ForeignKey('ngotb.id'), nullable=False)
+    
+    ngotb = db.relationship('NGO', backref='successes', lazy=True)
+
     def __repr__(self):
         return f"Successes(id={self.id}, title='{self.title}', ngotb_id={self.ngotb_id})"

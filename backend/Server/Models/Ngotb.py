@@ -23,6 +23,11 @@ class NGO(db.Model):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
 
 
+    donations = db.relationship('Donations', backref='ngotb', lazy=True)
+
+    
+
+
     @validates('name')
     def validate_username(self, key, name):
         assert len(name) >= 8, "name must be at least 8 characters long."

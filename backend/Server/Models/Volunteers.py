@@ -12,5 +12,7 @@ class Volunteers(db.Model):
     role = db.Column(db.String(100), nullable=False)  
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
+    ngotb = db.relationship('NGO', backref='volunteers', lazy=True)
+
     def __repr__(self):
         return f"Volunteer (id={self.id}, ngotb_id={self.ngotb_id}, description={self.description}, role={self.role}, created_at={self.created_at})"
