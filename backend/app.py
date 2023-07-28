@@ -11,7 +11,7 @@ app = Flask(__name__)
 def initializing_models():
     from Server.Models.donations import Donations
     from Server.Models.Ngotb import NGO
-    from Server.Models.reviews import reviews
+    from Server.Models.reviews import Reviews
     from Server.Models.successtb import Successes
     from Server.Models.users import Users
     from Server.Models.Volunteers import Volunteers
