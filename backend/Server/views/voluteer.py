@@ -11,7 +11,7 @@ class VolunteerResource(Resource):
         if volunteer is None:
             abort(404, message="Volunteer not found.")
         
-        return {
+        return { 
             'id': volunteer.id,
             'ngotb_id': volunteer.ngotb_id,
             'description': volunteer.description,

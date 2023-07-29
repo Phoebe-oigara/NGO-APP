@@ -7,6 +7,7 @@ from Server.views.users import GetAllUsers,AddUser,UserResourcesById
 from Server.views.reviews import GetAllReviews,ReviewsResource,AddReview
 from Server.views.voluteer import AllVolunteers,AddVolunteers,VolunteerResource
 from Server.views.donatios import DonationResource,DonationsResource
+from Server.views.success import SuccessesResource,SuccessesListResource
 
 
 
@@ -36,6 +37,7 @@ api.add_resource(DonationResource, '/donations/<int:donation_id>')
 api.add_resource(DonationsResource, '/donations')
 
 
-
+api.add_resource(SuccessesResource, '/successes/<int:success_id>')
+api.add_resource(SuccessesListResource, '/successes')
 
 
