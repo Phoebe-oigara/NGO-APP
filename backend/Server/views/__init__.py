@@ -6,6 +6,7 @@ from Server.views.ngo import ViewAllNgo,ViewNgoById,RegisterNgo
 from Server.views.users import GetAllUsers,AddUser,UserResourcesById
 from Server.views.reviews import GetAllReviews,ReviewsResource,AddReview
 from Server.views.voluteer import AllVolunteers,AddVolunteers,VolunteerResource
+from Server.views.donatios import DonationResource,DonationsResource
 
 
 
@@ -30,6 +31,9 @@ api.add_resource(ReviewsResource,'/review/<int:review_id>')
 api.add_resource(AllVolunteers, '/volunteers')
 api.add_resource(AddVolunteers,'/addvoluteer')
 api.add_resource(VolunteerResource, '/volunteers/<int:volunteer_id>')
+
+api.add_resource(DonationResource, '/donations/<int:donation_id>')
+api.add_resource(DonationsResource, '/donations')
 
 
 
