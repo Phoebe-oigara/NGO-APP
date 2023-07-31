@@ -7,9 +7,7 @@ const NGORegister = ({ onSubmit }) => {
     NGOname: '',
     email: '',
     description: '',
-    location: '',
-    password: '',
-    confirmPassword: '',
+    location: ''
   });
 
   const handleChange = (e) => {
@@ -73,26 +71,6 @@ const NGORegister = ({ onSubmit }) => {
             type="text"
             name="location"
             value={formData.location}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Confirm Password:</label>
-          <input
-            type="password"
-            name="confirmPassword"
-            value={formData.confirmPassword}
             onChange={handleChange}
             required
           />
