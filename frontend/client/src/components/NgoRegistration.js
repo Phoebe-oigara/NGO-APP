@@ -83,4 +83,5 @@ const NGORegister = ({ onSubmit }) => {
   );
 };
 
+  
 export default NGORegister;
