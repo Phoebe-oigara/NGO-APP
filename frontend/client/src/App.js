@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Im
 import LandingPage from './pages/LandingPage';
 import SignupPage from './pages/SignupPage';
 import NGORegistrationPage from './pages/NGORegistration';
+import UserloginPage from './pages/UserloginPage';
+import NGOloginPage from './pages/NGOLoginPage';
 
 function App() {
   const handleFormSubmit = (formData) => {
@@ -19,6 +21,8 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/signup" element={<SignupPage onSubmit={handleFormSubmit} />} />
           <Route path="/register" element={<NGORegistrationPage onSubmit={handleFormSubmit} />} />
+          <Route path="/Userlogin" element={<UserloginPage onSubmit={handleFormSubmit} />} />
+          <Route path="/NGOlogin" element={<NGOloginPage onSubmit={handleFormSubmit} />} />
 
 
         </Routes>
