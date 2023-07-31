@@ -7,6 +7,7 @@ import SignupPage from './pages/SignupPage';
 import NGORegistrationPage from './pages/NGORegistration';
 import UserloginPage from './pages/UserloginPage';
 import NGOloginPage from './pages/NGOLoginPage';
+import NGOList from './components/Ngolistings';
 
 function App() {
   const handleFormSubmit = (formData) => {
@@ -23,6 +24,8 @@ function App() {
           <Route path="/register" element={<NGORegistrationPage onSubmit={handleFormSubmit} />} />
           <Route path="/Userlogin" element={<UserloginPage onSubmit={handleFormSubmit} />} />
           <Route path="/NGOlogin" element={<NGOloginPage onSubmit={handleFormSubmit} />} />
+          <Route path="/ngolist" element={<NGOList/>} />
+
 
 
         </Routes>
