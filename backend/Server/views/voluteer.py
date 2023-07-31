@@ -2,6 +2,7 @@ from flask_restful import Resource,abort
 from Server.Models.Volunteers import Volunteers
 from flask import request
 from app import db
+from datetime import datetime
 
 
 class VolunteerResource(Resource):
@@ -16,7 +17,7 @@ class VolunteerResource(Resource):
             'ngotb_id': volunteer.ngotb_id,
             'description': volunteer.description,
             'role': volunteer.role,
-            'created_at': volunteer.created_at,
+            'created_at': volunteer.created_at.isoformat()
         }, 200
 
     def put(self, volunteer_id):
