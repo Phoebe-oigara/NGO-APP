@@ -11,7 +11,7 @@ class Reviews(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    ngotb_Id = db.Column(db.Integer, db.ForeignKey('ngotb.id'))
+    ngotb_id = db.Column(db.Integer, db.ForeignKey('ngotb.id'))
     review = db.Column(db.String(255), nullable=False)
 
     def __repr__(self):
