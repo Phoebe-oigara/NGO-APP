@@ -1,4 +1,5 @@
 import './App.css';
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Import BrowserRouter and update the imports
 
@@ -8,6 +9,9 @@ import NGORegistrationPage from './pages/NGORegistration';
 import UserloginPage from './pages/UserloginPage';
 import NGOloginPage from './pages/NGOLoginPage';
 import NGOList from './components/Ngolistings';
+
+// styling pages
+
 
 function App() {
   const handleFormSubmit = (formData) => {
