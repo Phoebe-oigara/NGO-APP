@@ -1,0 +1,65 @@
+/* SignupPage.css */
+
+/* Center the content vertically and horizontally */
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f7f8f9; /* White background */
+  }
+  
+  /* Style the form container */
+  .form-container {
+    width: 100%; /* Form container fills half of the page */
+    max-width: 400px; /* Set a maximum width to maintain the form's size on larger screens */
+    padding: 20px;
+    border: 1px solid #d87927; /* Thin border filled with #D87927 */
+    border-radius: 5px;
+    background-color: #ffffff; /* White background */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+  }
+  
+  /* Style the form headings */
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold; /* Make the header bold */
+  }
+  
+  /* Style form input fields */
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #d87927; /* Thin border filled with #D87927 */
+    border-radius: 3px;
+    color: #000000; /* Light black font for input fields */
+  }
+  
+  /* Style form buttons */
+  button {
+    width: 100%;
+    padding: 10px;
+    font-weight: bold;
+  }
+  
+  button.btn-primary {
+    background-color: #d87927; /* Filled with #D87927 */
+    color: #f7f8f9; /* Font color #F7F8F9 */
+    border: none;
+    border-radius: 3px;
+  }
+  
+  button.btn-secondary {
+    background-color: #f7f8f9; /* Filled with #F7F8F9 */
+    color: #d87927; /* Font color #D87927 */
+    border: 1px solid #d87927; /* Thin border filled with #D87927 */
+    border-radius: 3px;
+  }
+  
+  button.btn-primary:hover,
+  button.btn-secondary:hover {
+    background-color: #b96e22; /* Slightly darken the color on hover */
+  }
+  
