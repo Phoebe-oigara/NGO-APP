@@ -9,8 +9,8 @@
 
 :root{
     --header: 900;
-    --headingtext:4rem;
-    --header2: 2.3rem;
+    --headingtext:3rem;
+    --header2: 2rem;
     --paragraph-text: 1rem;
 }
 
@@ -57,3 +57,14 @@
     font-weight: bold;
 
 }
+
+#enlist{
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+  
+}
+
+/* MyListComponent.css */
+
+  
