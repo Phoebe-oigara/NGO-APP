@@ -21,7 +21,7 @@ function App() {
   return (
     <Router> 
       <div className="App">
-        <h1>NGO CONNECT</h1>
+       
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/signup" element={<SignupPage onSubmit={handleFormSubmit} />} />
