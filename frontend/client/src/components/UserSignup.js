@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 
 const UserSignup = ({ onSubmit }) => {
@@ -20,54 +21,70 @@ const UserSignup = ({ onSubmit }) => {
   };
 
   return (
-    <div>
-      <h2>Sign Up</h2>
+    <div className= 'container'>
+      <div className= 'row'>
+        <div className= 'col'>
+        {<img src="/images/hero-section.jpg" alt="Example Image" />}
+      </div>
+        <div className="form-container">
+      <h2 className="text-center mb-4">Sign Up</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name:</label>
+        <div className="mb-3">
           <input
             type="text"
+            className="form-control"
             name="name"
             value={formData.name}
             onChange={handleChange}
+            placeholder="Name"
             required
           />
         </div>
-        <div>
-          <label>Email:</label>
+        <div className="mb-3">
           <input
             type="email"
+            className="form-control"
             name="email"
             value={formData.email}
             onChange={handleChange}
+            placeholder="Email"
             required
           />
         </div>
-        <div>
-          <label>Password:</label>
+        <div className="mb-3">
           <input
             type="password"
+            className="form-control"
             name="password"
             value={formData.password}
             onChange={handleChange}
+            placeholder="Password"
             required
           />
         </div>
-        <div>
-          <label>Confirm Password:</label>
+        <div className="mb-3">
           <input
             type="password"
+            className="form-control"
             name="confirmPassword"
             value={formData.confirmPassword}
             onChange={handleChange}
+            placeholder="Confirm Password"
             required
           />
         </div>
-        <div>
-          <button type="submit">Create Account</button>
-          <button type="button">Register NGO</button>
+        <div className="d-grid gap-2">
+          <button type="submit" className="btn btn-primary">
+            Create Account
+          </button>
+          <button type="button" className="btn btn-secondary">
+            Register NGO
+          </button>
         </div>
       </form>
+        </div>
+      </div>
+    
     </div>
   );
 };

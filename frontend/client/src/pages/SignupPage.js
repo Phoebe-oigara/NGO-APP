@@ -1,7 +1,7 @@
 
 import React from 'react';
 import UserSignup from '../components/UserSignup';
-
+import '../styling/SignupPage.css'
 function SignupPage({ onSubmit }) {
     
   const handleSubmit = (formData) => {
@@ -9,9 +9,8 @@ function SignupPage({ onSubmit }) {
   };
 
   return (
-    <div>
-      <h2>Sign Up Page</h2>
-      <UserSignup onSubmit={handleSubmit} /> 
+    <div className="container"> {/* Add the container class */}
+      <UserSignup onSubmit={handleSubmit} />
     </div>
   );
 }
