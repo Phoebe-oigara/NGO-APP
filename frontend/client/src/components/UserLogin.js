@@ -59,6 +59,7 @@
 // LoginForm.js
 // LoginForm.js
 import React, { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const LoginForm = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
@@ -77,40 +78,83 @@ const LoginForm = ({ onSubmit }) => {
     // Add your login logic here (e.g., sending login request to the server)
   };
 
-  return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h2 className="text-center mb-4">User Login</h2> {/* User Login header */}
-        <div className="mb-3">
-          <input
-            type="email"
-            className="form-control"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Name"
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <input
-            type="password"
-            className="form-control"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="Password"
-            required
-          />
-        </div>
-        <button type="submit" className="btn btn-primary btn-block">
-          Login
-        </button>
-      </form>
-    </div>
-  );
-};
+//   return (
+//       <div>
+//         <form onSubmit={handleSubmit}>
+//           <h2 className="text-center mb-4">User Login</h2> {/* User Login header */}
+//           <div className="mb-3">
+//             <input
+//               type="email"
+//               className="form-control"
+//               name="email"
+//               value={formData.email}
+//               onChange={handleChange}
+//               placeholder="Name"
+//               required
+//             />
+//           </div>
+//           <div className="mb-3">
+//             <input
+//               type="password"
+//               className="form-control"
+//               name="password"
+//               value={formData.password}
+//               onChange={handleChange}
+//               placeholder="Password"
+//               required
+//             />
+//           </div>
+//           <button type="submit" className="btn btn-primary btn-block">
+//             Login
+//           </button>
+//         </form>
+//       </div>
+//   );
+// };
 
-export default LoginForm;
+// export default LoginForm;
+
+return (
+  <div className= 'container'>
+    <div className= 'row'>
+      <div className= 'col'>
+        {/* {put image here} */}
+      </div>
+      <div className= 'col'>
+      <form onSubmit={handleSubmit}>
+      <h2 className="text-center mb-4">User Login</h2> {/* User Login header */}
+      <div className="mb-3">
+        <input
+          type="email"
+          className="form-control"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="Name"
+          required
+        />
+      </div>
+      <div className="mb-3">
+        <input
+          type="password"
+          className="form-control"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          placeholder="Password"
+          required
+        />
+      </div>
+      <button type="submit" className="btn btn-primary btn-block">
+        Login
+      </button>
+    </form>
+      </div>
+    
+    </div>
+    
+  </div>
+);
+};
 
 
