@@ -32,7 +32,7 @@
     color: #000000; 
   }
   
-  /* Style form input fields */
+   Style form input fields
   input {
     width: 100%;
     padding: 8px;
@@ -54,6 +54,10 @@
   }
   
   button[type="submit"]:hover {
-    background-color: #b96e22; 
+    background-color: #b96e22;
+    width: 10%;
+
   }
-  
+    
+    
+   
