@@ -1,9 +1,9 @@
-/* SignupPage.css */
+
 
 /* Center the content vertically and horizontally */
 .container {
     display: flex;
-    align-items: center;
+    align-items:end;
     justify-content: center;
     min-height: 100vh;
     background-color: #f7f8f9; /* White background */
@@ -11,9 +11,9 @@
   
   /* Style the form container */
   .form-container {
-    width: 100%; /* Form container fills half of the page */
-    max-width: 400px; /* Set a maximum width to maintain the form's size on larger screens */
-    padding: 20px;
+    width: 200%; /* Form container fills half of the page */
+    max-width: 1000px; /* Set a maximum width to maintain the form's size on larger screens */
+    padding: 2px;
     border: 1px solid #d87927; /* Thin border filled with #D87927 */
     border-radius: 5px;
     background-color: #ffffff; /* White background */

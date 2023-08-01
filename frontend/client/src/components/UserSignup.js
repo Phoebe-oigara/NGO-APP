@@ -21,7 +21,12 @@ const UserSignup = ({ onSubmit }) => {
   };
 
   return (
-    <div className="form-container">
+    <div className= 'container'>
+      <div className= 'row'>
+        <div className= 'col'>
+        {<img src="/images/hero-section.jpg" alt="Example Image" />}
+      </div>
+        <div className="form-container">
       <h2 className="text-center mb-4">Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
@@ -77,6 +82,9 @@ const UserSignup = ({ onSubmit }) => {
           </button>
         </div>
       </form>
+        </div>
+      </div>
+    
     </div>
   );
 };

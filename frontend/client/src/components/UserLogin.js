@@ -118,7 +118,7 @@ return (
   <div className= 'container'>
     <div className= 'row'>
       <div className= 'col'>
-        {/* {put image here} */}
+        {<img src="/images/hero-section.jpg" alt="Example Image" />}
       </div>
       <div className= 'col'>
       <form onSubmit={handleSubmit}>
@@ -156,5 +156,7 @@ return (
   </div>
 );
 };
+export default LoginForm;
+
 
 
