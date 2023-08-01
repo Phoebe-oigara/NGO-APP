@@ -21,37 +21,80 @@ const LoginForm = () => {
     // Handle signup navigation or logic here
     console.log('Redirect to signup page or show signup modal');
   };
-
   return (
-    <div>
-      <h2>User Login</h2>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>
-            Name:
-            <input type="text" name="name" value={formData.name} onChange={handleChange} />
-          </label>
-        </div>
-        <div>
-          <label>
-            Password:
+    <div className="container"> {/* Add the container class */}
+      <div className="form-container"> {/* Add the form container class */}
+        <h2 className="text-center">User Login</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">
+              Email:
+            </label>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="password" className="form-label">
+              Password:
+            </label>
             <input
               type="password"
+              className="form-control"
+              id="password"
               name="password"
               value={formData.password}
               onChange={handleChange}
+              placeholder="Enter your password"
+              required
             />
-          </label>
-        </div>
-        <div>
-          <button type="submit">Login</button>
-        </div>
-      </form>
-      <div>
-        <button onClick={handleSignup}>Sign Up</button>
+          </div>
+          <button type="submit" className="btn btn-primary btn-block">
+            Login
+          </button>
+        </form>
       </div>
     </div>
   );
 };
+
+//   return (
+//     <div>
+//       <h2>User Login</h2>
+//       <form onSubmit={handleLogin}>
+//         <div>
+//           <label>
+//             Name:
+//             <input type="text" name="name" value={formData.name} onChange={handleChange} />
+//           </label>
+//         </div>
+//         <div>
+//           <label>
+//             Password:
+//             <input
+//               type="password"
+//               name="password"
+//               value={formData.password}
+//               onChange={handleChange}
+//             />
+//           </label>
+//         </div>
+//         <div>
+//           <button type="submit">Login</button>
+//         </div>
+//       </form>
+//       <div>
+//         <button onClick={handleSignup}>Sign Up</button>
+//       </div>
+//     </div>
+//   );
+// };
 
 export default LoginForm;
