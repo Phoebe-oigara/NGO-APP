@@ -1,0 +1,17 @@
+#page-header{
+
+    height: 300px;
+    background-image: url('/home/erick/Desktop/project - v3/NGO-APP/frontend/client/public/images/hero-section.jpg');
+    position: relative;
+    margin-bottom: 100px ;
+    background-color: rgba(0, 0, 0, 0.7);
+
+
+}
+.title{  
+
+    padding-top: 150px;
+    padding-bottom: 100px;
+    text-align: center;
+  
+}
