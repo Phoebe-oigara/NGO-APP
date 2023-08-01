@@ -8,7 +8,7 @@ import SignupPage from './pages/SignupPage';
 import NGORegistrationPage from './pages/NGORegistration';
 import UserloginPage from './pages/UserloginPage';
 import NGOloginPage from './pages/NGOLoginPage';
-import NGOList from './components/Ngolistings';
+import NGOList from './components/NGOlistings';
 
 // styling pages
 
