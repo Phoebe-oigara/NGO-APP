@@ -1,5 +1,5 @@
-from flask import Blueprint
-from flask_restful import Api
+from flask import Blueprint# A Blueprint in Flask allows you to organize your views and routes into separate modules for better code organization and reusability.
+from flask_restful import Api#create RESTFul API instance
 
 # import all views file here
 from Server.views.ngo import ViewAllNgo,ViewNgoById,RegisterNgo
@@ -11,10 +11,10 @@ from Server.views.success import SuccessesResource,SuccessesListResource
 
 
 
-api_endpoints = Blueprint('auth', __name__, url_prefix='/ngoconnect')
+api_endpoints = Blueprint('auth', __name__, url_prefix='/ngoconnect')#means that all routes will have NGOCONNECT as their base URL
 api = Api(api_endpoints)
 
-# specify all view points here
+# specify all view points here/REGISTER THE ROUTES
 
 api.add_resource(ViewAllNgo, '/ngolist')
 api.add_resource(RegisterNgo, '/register')
