@@ -1,19 +1,19 @@
-
 import React from 'react';
-import NGOLogin from '../components/NGOLogin';
+import NGOlogin from '../components/NGOLogin';
+import '../styling/NGOLogin.css'; 
 
 function NGOloginPage({ onSubmit }) {
-    
   const handleSubmit = (formData) => {
     onSubmit(formData);
   };
 
   return (
-    <div>
-      <h2>NGO Login Page</h2>
-      <NGOLogin onSubmit={handleSubmit} /> 
+    <div> 
+      <h2>NGO Login</h2>
+      <NGOlogin onSubmit={handleSubmit} /> 
     </div>
   );
 }
 
 export default NGOloginPage;
+

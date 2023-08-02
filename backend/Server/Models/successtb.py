@@ -15,5 +15,5 @@ class Successes(db.Model):
     
     ngotb = db.relationship('NGO', backref='successes', lazy=True)
 
-    def __repr__(self):
+    def __repr__(self):# rep obj as a string when printed
         return f"Successes(id={self.id}, title='{self.title}', ngotb_id={self.ngotb_id})"
