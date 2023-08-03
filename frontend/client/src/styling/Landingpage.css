@@ -65,6 +65,20 @@
   
 }
 
-/* MyListComponent.css */
+.form-width{
+    width:40%;
+}
+.button-width{
+    width: 100%;
+}
+
+.devider{
+    background-color: #F5f9fd;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+  
 
   

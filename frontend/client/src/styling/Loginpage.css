@@ -1,4 +1,12 @@
 
+/* TwoColumnLayout.css */
+.bg-image-container {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  /* Change the background color as desired */
+
+
 .container {
   display: flex;
   align-items: center;
@@ -30,11 +38,23 @@ label {
   display: block;
   margin-bottom: 8px;
   color: #000000; 
+
 }
 
-/* Style form input fields */
-input {
+.bg-image-container img {
+  object-fit: cover;
+  height: 100%;
   width: 100%;
+
+}
+
+/* Optional: Add styles to center the form on the page */
+/* Adjust as necessary based on your form's width */
+.form-container {
+ width: 100vw;
+}
+
+
   padding: 80px;
   margin-bottom: 16px;
   border: 10px solid #d87927; 
@@ -60,3 +80,4 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: #a4590e; 
 }
+

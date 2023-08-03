@@ -8,6 +8,11 @@
 
 .list-group{
     border-radius: 0px;
+    background-color: var(--devider);
+}
+
+.list-group-item{
+    padding: 20px;
 }
 
 .list-group-item.active{
@@ -27,4 +32,5 @@
 .card-body{
     padding: 10px;
     margin-top: -20px;
+    background-color: var(--devider);
 }

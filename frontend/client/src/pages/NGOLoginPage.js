@@ -7,13 +7,11 @@ function NGOloginPage({ onSubmit }) {
     onSubmit(formData);
   };
 
-//   return (
-//     <div> 
-//       <h2>NGO Login</h2>
-//       <NGOlogin onSubmit={handleSubmit} /> 
-//     </div>
-//   );
-// }
+
+  return (
+    <div> 
+      <NGOlogin onSubmit={handleSubmit} /> 
+
 return (
   <div className="container"> {/* Add the container class */}
     <div className="row justify-content-center">
@@ -27,6 +25,7 @@ return (
       <div className="col-md-6"> {/* Add Bootstrap column class for the image */}
         {/* Add your image here */}
       </div>
+
     </div>
   </div>
 );
