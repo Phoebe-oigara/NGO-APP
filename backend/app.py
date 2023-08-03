@@ -3,9 +3,21 @@ from flask import Flask
 from config import app_config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_jwt_extended import JWTManager
+
+
 
 db = SQLAlchemy()
+
+
+
 app = Flask(__name__)
+
+
+
+
+jwt = JWTManager()
+
 
 
 def initializing_models():
@@ -26,28 +38,33 @@ def initializing_views():
 def create_app(config_name):
 
     app.config.from_object(config_name)
-
     app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///app.db'
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    app.config['JWT_SECRET_KEY'] = 'Soweto@awsum2023'
+    
+    
+    
 
     # Initialize the db with the app
     db.init_app(app)
+    jwt.init_app(app)
+    
 
+   
     migrate = Migrate(app, db)
-
 
     with app.app_context():
         # Initialize models within the application context
         initializing_models()
 
-    # Create the database tables (if they don't exist)
+        # Create the database tables (if they don't exist)
         db.create_all()
-
 
     # initializing the endpoints
     initializing_views()
 
     return app
+
 
 
 

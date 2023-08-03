@@ -1,11 +1,13 @@
 from flask_restful import Resource,abort,reqparse
 from Server.Models.donations import Donations
+from flask_jwt_extended import  jwt_required
 from flask import request
 from app import db
 
 
 
 class DonationResource(Resource):
+    @jwt_required()
     def get(self, donation_id):
         # Get a specific donation by its ID
         donation = Donations.query.get(donation_id)
@@ -18,7 +20,7 @@ class DonationResource(Resource):
             'ngotb_id': donation.ngotb_id,
             'phone_number': donation.phone_number,
             'amount': donation.amount,
-            'donation_date': donation.donation_date,
+            'donation_date': donation.donation_date.strftime('%Y-%m-%dT%H:%M:%S')
         }, 200
 
     def put(self, donation_id):
@@ -52,6 +54,7 @@ class DonationResource(Resource):
 
 # Resource for handling multiple Donations
 class DonationsResource(Resource):
+    @jwt_required()
     def get(self):
         # Get all donations
         donations = Donations.query.all()
@@ -62,7 +65,7 @@ class DonationsResource(Resource):
                 'ngotb_id': donation.ngotb_id,
                 'phone_number': donation.phone_number,
                 'amount': donation.amount,
-                'donation_date': donation.donation_date,
+                'donation_date': donation.donation_date.strftime('%Y-%m-%dT%H:%M:%S')
             } for donation in donations
         ], 200
 

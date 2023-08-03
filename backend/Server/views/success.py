@@ -1,5 +1,6 @@
 from flask_restful import Resource,abort
 from Server.Models.successtb import Successes
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 from flask import request
 from app import db
 
@@ -12,6 +13,7 @@ def get_successes_instance(success_id):
 
 # Resource for single Successes instance
 class SuccessesResource(Resource):
+    @jwt_required()
     def get(self, success_id):
         instance = get_successes_instance(success_id)
         return {'id': instance.id, 'title': instance.title, 'description': instance.description}
@@ -32,17 +34,18 @@ class SuccessesResource(Resource):
 
 # Resource for listing all Successes instances and creating new instances
 class SuccessesListResource(Resource):
+    @jwt_required()
     def get(self):
         instances = Successes.query.all()
         return [{'id': instance.id, 'title': instance.title} for instance in instances]
 
     def post(self):
         data = request.get_json()
+        ngotb_id = data['ngotb_id']
         title = data['title']
         description = data['description']
         # Add other required fields based on your use case
-
-        new_instance = Successes(title=title, description=description)
+        new_instance = Successes(ngotb_id=ngotb_id, title=title, description=description)
         db.session.add(new_instance)
         db.session.commit()
         return {'message': 'Successes instance created successfully.', 'id': new_instance.id}, 201
