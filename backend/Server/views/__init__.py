@@ -1,9 +1,9 @@
-from flask import Blueprint# A Blueprint in Flask allows you to organize your views and routes into separate modules for better code organization and reusability.
-from flask_restful import Api#create RESTFul API instance
+from flask import Blueprint
+from flask_restful import Api
 
-# import all views file here
+
 from Server.views.ngo import ViewAllNgo,ViewNgoById,RegisterNgo
-from Server.views.users import GetAllUsers,AddUser,UserResourcesById
+from Server.views.users import GetAllUsers,AddUser,UserResourcesById,UserLogin
 from Server.views.reviews import GetAllReviews,ReviewsResource,AddReview
 from Server.views.voluteer import AllVolunteers,AddVolunteers,VolunteerResource
 from Server.views.donatios import DonationResource,DonationsResource
@@ -11,16 +11,20 @@ from Server.views.success import SuccessesResource,SuccessesListResource
 
 
 
-api_endpoints = Blueprint('auth', __name__, url_prefix='/ngoconnect')#means that all routes will have NGOCONNECT as their base URL
+
+
+
+api_endpoints = Blueprint('auth', __name__, url_prefix='/ngoconnect')
 api = Api(api_endpoints)
 
-# specify all view points here/REGISTER THE ROUTES
 
 api.add_resource(ViewAllNgo, '/ngolist')
 api.add_resource(RegisterNgo, '/register')
 api.add_resource(ViewNgoById, '/ngo/<int:ngo_id>')
 
+
 api.add_resource(GetAllUsers, '/users')
+api.add_resource(UserLogin,'/login')
 api.add_resource(AddUser, '/addusers')
 api.add_resource(UserResourcesById, '/users/<int:user_id>')
 
@@ -39,5 +43,4 @@ api.add_resource(DonationsResource, '/donations')
 
 api.add_resource(SuccessesResource, '/successes/<int:success_id>')
 api.add_resource(SuccessesListResource, '/successes')
-
 

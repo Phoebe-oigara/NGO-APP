@@ -16,21 +16,12 @@ class NGO(db.Model):
     category = db.Column(db.String(255), nullable=False)
     image = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(70), unique=True, nullable=False)
-    Location = db.Column(db.String(255), nullable=False)
+    location = db.Column(db.String(255), nullable=False)
     url = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
 
 
     donations = db.relationship('Donations', backref='ngotb', lazy=True)
-
-    
-
-
-    @validates('name')
-    def validate_username(self, key, name):
-        assert len(name) >= 8, "name must be at least 8 characters long."
-        return name
-
 
     @validates('email')
     def validate_email(self, key, email):
@@ -50,6 +41,6 @@ class NGO(db.Model):
         return (
             f"NGO(id={self.id}, name='{self.name}' "
             f"description='{self.description}', category='{self.category}', "
-            f"image={self.image}, email='{self.email}', Location='{self.Location}', "
+            f"image={self.image}, email='{self.email}', location='{self.location}', "
             f"url='{self.url}', created_at='{self.created_at}')"
         )

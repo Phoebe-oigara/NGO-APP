@@ -3,10 +3,10 @@ from flask import request
 from Server.Models.Ngotb import NGO
 from app import db
 from flask_restful import reqparse
-
-
+from flask_jwt_extended import jwt_required
 
 class  ViewAllNgo(Resource):
+    @jwt_required()
     def get(self):
         ngo = NGO.query.all()
 
@@ -17,7 +17,7 @@ class  ViewAllNgo(Resource):
             "category":ngo.category,
             "image":ngo.image,
             "email":ngo.email,
-            "location":ngo.Location,
+            "location":ngo.location,
             "url":ngo.url
         } for ngo in ngo ]
 
@@ -25,6 +25,7 @@ class  ViewAllNgo(Resource):
         
 
 class RegisterNgo(Resource):
+    @jwt_required()
     def post (self):
 
         data = request.json
@@ -34,7 +35,7 @@ class RegisterNgo(Resource):
         category = data.get('category')
         image = data.get('image')
         email = data.get('email')
-        Location = data.get('Location')
+        location = data.get('location')
         url = data.get('url')
 
         new_ngo = NGO(
@@ -43,17 +44,18 @@ class RegisterNgo(Resource):
             category=category,
             image=image,
             email=email,
-            Location=Location,
+            location=location,
             url=url
         )
 
         db.session.add(new_ngo)
         db.session.commit()
 
-        return {"message": "NGO registered successfully.", "ngo": new_ngo.__repr__()}, 201
+        return {"message": "NGO registered successfully."}, 201
 
 
 class ViewNgoById(Resource):
+    @jwt_required()
     def get (self, ngo_id):
         ngo = NGO.query.get(ngo_id)
 
@@ -65,7 +67,7 @@ class ViewNgoById(Resource):
                 "category": ngo.category,
                 "image": ngo.image,
                 "email": ngo.email,
-                "location": ngo.Location,
+                "location": ngo.location,
                 "url": ngo.url
             }
             return ngo_data, 200
@@ -96,7 +98,7 @@ class ViewNgoById(Resource):
         parser.add_argument("category", type=str, required=False)
         parser.add_argument("image", type=str, required=False)
         parser.add_argument("email", type=str, required=False)
-        parser.add_argument("Location", type=str, required=False)
+        parser.add_argument("location", type=str, required=False)
         parser.add_argument("url", type=str, required=False)
         data = parser.parse_args()
 
@@ -108,3 +110,4 @@ class ViewNgoById(Resource):
         db.session.commit()
 
         return {"message": "NGO updated successfully", "ngo": ngo.__repr__()}, 200
+

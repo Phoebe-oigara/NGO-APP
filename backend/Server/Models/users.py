@@ -14,18 +14,15 @@ class Users(db.Model):
     password = db.Column(db.String, unique=True, nullable=False)
     created_at = db.Column(db.DateTime,server_default=db.func.now() )
 
-    
 
-    @validates('fullname')
-    def validate_username(self, key, name):
-        assert len(name) >= 8, "name must be at least 8 characters long."
-        return name
+   
 
     @validates('email')
     def validate_email(self, key, email):
-            assert '@' in email, "Email address must contain the @ symbol."
-            assert '.' in email.split('@')[-1], "Email address must have a valid domain name."
-            return email
+        assert '@' in email, "Email address must contain the @ symbol."
+        assert '.' in email.split('@')[-1], "Email address must have a valid domain name."
+        return email
+
     
     @validates('password')
     def validate_password(self, key, password):
@@ -34,6 +31,7 @@ class Users(db.Model):
         assert any(char.isdigit() for char in password), "Password must contain at least one number."
         assert re.search(r'[!@#$%^&*()-_=+{};:,<.>]', password), "Password must contain at least one symbol."
         return self.hash_password(password)
+
 
     def hash_password(self, password):
         # Hash the password using bcrypt

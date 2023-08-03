@@ -1,11 +1,13 @@
 from flask_restful import Resource,abort
 from Server.Models.Volunteers import Volunteers
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 from flask import request
 from app import db
 from datetime import datetime
 
 
 class VolunteerResource(Resource):
+    # @jwt_required()
     def get(self, volunteer_id):
         # Get a specific volunteer by their ID
         volunteer = Volunteers.query.get(volunteer_id)
@@ -17,7 +19,7 @@ class VolunteerResource(Resource):
             'ngotb_id': volunteer.ngotb_id,
             'description': volunteer.description,
             'role': volunteer.role,
-            'created_at': volunteer.created_at.isoformat()
+            'created_at': volunteer.created_at.strftime('%Y-%m-%dT%H:%M:%S')
         }, 200
 
     def put(self, volunteer_id):
@@ -48,6 +50,7 @@ class VolunteerResource(Resource):
 
 # Resource for handling multiple Volunteers
 class AllVolunteers(Resource):
+    # @jwt_required()
     def get(self):
         # Get all volunteers
         volunteers = Volunteers.query.all()
@@ -57,7 +60,7 @@ class AllVolunteers(Resource):
                 'ngotb_id': volunteer.ngotb_id,
                 'description': volunteer.description,
                 'role': volunteer.role,
-                'created_at': volunteer.created_at,
+                'created_at': volunteer.created_at.strftime('%Y-%m-%dT%H:%M:%S')
             } for volunteer in volunteers
         ], 200
 
