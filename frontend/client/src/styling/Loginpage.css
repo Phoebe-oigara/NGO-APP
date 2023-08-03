@@ -1,20 +1,83 @@
+
 /* TwoColumnLayout.css */
 .bg-image-container {
   height: 100vh;
   margin: 0;
   padding: 0;
   /* Change the background color as desired */
+
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 99vh;
+  background-color: #f7f8f9; 
+}
+
+/* Style the form container */
+.form-container {
+  width: 200%; 
+  max-width: 1000px; 
+  padding: 1px;
+  border: 1px solid #d37624; 
+  border-radius: 5px;
+  background-color: #ffffff; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+}
+
+/* Style the form headings */
+h2 {
+  text-align:left;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* Style form labels */
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #000000; 
+
 }
 
 .bg-image-container img {
   object-fit: cover;
   height: 100%;
   width: 100%;
+
 }
 
 /* Optional: Add styles to center the form on the page */
 /* Adjust as necessary based on your form's width */
 .form-container {
  width: 100vw;
+}
+
+
+  padding: 80px;
+  margin-bottom: 16px;
+  border: 10px solid #d87927; 
+  border-radius: 3px;
+  color: #914b12; 
+  &::placeholder {
+    color: #8c8c8c; 
+    font-weight: bold; 
+  }
+}
+
+/* Style form submit button */
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #d87927; 
+  color: #f7f8f9; 
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #a4590e; 
 }
 

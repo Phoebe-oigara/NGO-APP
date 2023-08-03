@@ -17,6 +17,7 @@ const NGOLogin = ({ onSubmit }) => {
     onSubmit(formData);
   };
 
+
   return (
     <div className="container-fluid h-100" id="signuppage">
       <div className="row h-100">
@@ -56,8 +57,46 @@ const NGOLogin = ({ onSubmit }) => {
           </form>
         </div>
       </div>
+
+//   
+return (
+  <div className= 'container'>
+    <div className= 'row'>
+    <div className= 'col'>
+        {<img src="/images/hero-section.jpg" alt="Example Image" />}
+      </div>
+      <div className= 'col'>
+      <h2>NGO Login</h2>
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label>Name:</label>
+        <input
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <div>
+        <label>Password:</label>
+        <input
+          type="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <div>
+        <button type="submit">Login</button>
+      </div>
+    </form>
+      </div>
+
     </div>
-  );
+  </div>
+);
 };
 
 export default NGOLogin;

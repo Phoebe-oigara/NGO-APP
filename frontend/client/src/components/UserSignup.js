@@ -27,8 +27,14 @@ const UserSignup = ({ onSubmit }) => {
         <img src="/images/login.jpg" alt="signup " className="img-fluid" />
       </div>
 
+
       <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
       <form onSubmit={handleSubmit} className='form-width'>
+
+        <div className= 'col'>
+      <h2 className="text-center mb-4">Sign Up</h2>
+      <form onSubmit={handleSubmit}>
+
         <div className="mb-3">
           <h1>User Sign Up</h1>
           <input
