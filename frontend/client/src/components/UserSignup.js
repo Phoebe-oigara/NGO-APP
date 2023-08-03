@@ -29,11 +29,11 @@ const UserSignup = ({ onSubmit }) => {
 
 
       <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
-      <form onSubmit={handleSubmit} className='form-width'>
+      {/* <form onSubmit={handleSubmit} className='form-width'> */}
 
         <div className= 'col'>
       <h2 className="text-center mb-4">Sign Up</h2>
-      <form onSubmit={handleSubmit}>
+      <form  className='form-width' onSubmit={handleSubmit}>
 
         <div className="mb-3">
           <h1>User Sign Up</h1>
@@ -93,6 +93,7 @@ const UserSignup = ({ onSubmit }) => {
         
       </div>
     </div>
+  </div>
   </div>
   
   );
