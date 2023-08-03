@@ -26,7 +26,7 @@ const UserSignup = ({ onSubmit }) => {
         <div className= 'col'>
         {<img src="/images/hero-section.jpg" alt="Example Image" />}
       </div>
-        <div className="form-container">
+        <div className= 'col'>
       <h2 className="text-center mb-4">Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
