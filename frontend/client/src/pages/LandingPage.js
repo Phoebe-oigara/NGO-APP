@@ -22,9 +22,7 @@ import HomepageRegister from '../components/Homepageregister';
       );
     };
     
+
     export default LandingPage;
 
-
-
-        
-    
+ 
