@@ -9,9 +9,9 @@ function SignupPage({ onSubmit }) {
   };
 
   return (
-    <div className="container"> {/* Add the container class */}
+
       <UserSignup onSubmit={handleSubmit} />
-    </div>
+    
   );
 }
 

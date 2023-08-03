@@ -21,15 +21,16 @@ const UserSignup = ({ onSubmit }) => {
   };
 
   return (
-    <div className= 'container'>
-      <div className= 'row'>
-        <div className= 'col'>
-        {<img src="/images/hero-section.jpg" alt="Example Image" />}
+    <div className="container-fluid h-100" id="signuppage">
+    <div className="row h-100">
+      <div className="col-12 col-md-6 bg-image-container d-none d-md-block">
+        <img src="/images/login.jpg" alt="signup " className="img-fluid" />
       </div>
-        <div className="form-container">
-      <h2 className="text-center mb-4">Sign Up</h2>
-      <form onSubmit={handleSubmit}>
+
+      <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
+      <form onSubmit={handleSubmit} className='form-width'>
         <div className="mb-3">
+          <h1>User Sign Up</h1>
           <input
             type="text"
             className="form-control"
@@ -82,11 +83,15 @@ const UserSignup = ({ onSubmit }) => {
           </button>
         </div>
       </form>
-        </div>
+
+        
       </div>
-    
     </div>
+  </div>
+  
   );
 };
 
 export default UserSignup;
+
+

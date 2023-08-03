@@ -9,7 +9,6 @@ function NGOloginPage({ onSubmit }) {
 
   return (
     <div> 
-      <h2>NGO Login</h2>
       <NGOlogin onSubmit={handleSubmit} /> 
     </div>
   );
