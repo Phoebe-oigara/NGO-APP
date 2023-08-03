@@ -32,11 +32,11 @@ const UserSignup = ({ onSubmit }) => {
       {/* <form onSubmit={handleSubmit} className='form-width'> */}
 
         <div className= 'col'>
-      <h2 className="text-center mb-4">Sign Up</h2>
+      {/* <h2 className="text-center mb-4">Sign Up</h2> */}
       <form  className='form-width' onSubmit={handleSubmit}>
 
         <div className="mb-3">
-          <h1>User Sign Up</h1>
+          <h1> Sign Up</h1>
           <input
             type="text"
             className="form-control"
