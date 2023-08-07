@@ -26,7 +26,7 @@ const NavBar = () => {
   return (
     <nav className={`site-title ${navbarClass}`}>
       <Link to="/" className="site-title">
-        NGO CONNECT
+        NGO CONNECTS
       </Link>
       <ul className="nav-list">
         <li className="nav-item">
