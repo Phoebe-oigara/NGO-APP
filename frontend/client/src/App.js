@@ -29,9 +29,6 @@ function App() {
           <Route path="/userlogin" element={<UserloginPage onSubmit={handleFormSubmit} />} />
           <Route path="/ngologin" element={<NGOloginPage onSubmit={handleFormSubmit} />} />
           <Route path="/ngolist" element={<NGOList/>} />
-
-
-
         </Routes>
       </div>
     </Router>

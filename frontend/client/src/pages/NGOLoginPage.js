@@ -7,13 +7,11 @@ function NGOloginPage({ onSubmit }) {
     onSubmit(formData);
   };
 
-
   return (
     <div> 
-      <NGOlogin onSubmit={handleSubmit} />
-
-  </div>
-);
+      <NGOlogin onSubmit={handleSubmit} /> 
+    </div>
+  );
 }
 
 export default NGOloginPage;
