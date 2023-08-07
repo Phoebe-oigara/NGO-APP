@@ -1,0 +1,43 @@
+#sidebar{
+    height: 100vh;
+    background-color: #2c2c2c;
+    color: white;
+    
+}
+
+#quick-links{
+    width: 80%;
+    background-color: #2c2c2c;
+    padding: 20px; 
+    margin:auto;
+    border-radius: 6px;
+
+}
+
+.menu{
+    list-style: none;
+}
+
+li{
+    padding: 10px;
+}
+#Form-area{
+ 
+    padding: 10px;
+    margin: auto;
+    width: 90%;
+    margin-top: 20%;
+}
+.input-form{
+    padding: 100px;
+    border: solid 1px #000000;
+    border-radius: 6px;
+}
+
+input ,textarea{
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 5px;
+    border: solid 1px;
+    padding: 5px;
+}
