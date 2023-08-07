@@ -1,8 +1,9 @@
 from flask_restful import Resource,abort,reqparse
 from Server.Models.donations import Donations
 from flask_jwt_extended import  jwt_required
-from flask import request
+from flask import request, jsonify
 from app import db
+from sqlalchemy import func
 
 
 
@@ -90,3 +91,30 @@ class DonationsResource(Resource):
         except Exception as e:
             # Handle other errors (e.g., database errors) with a 500 Internal Server Error
             abort(500)
+
+    class LineChartResource(Resource):
+        def get(self):
+            # Query the database to fetch donation data
+            donations_data = db.session.query(Donations.donation_date, func.sum(Donations.amount)).group_by(Donations.donation_date).all()
+
+            # Process the data to extract dates and amounts for the chart
+            labels = [str(date) for date, _ in donations_data]
+            amounts = [amount for _, amount in donations_data]
+
+            # Prepare the chart data
+            chart_data = {
+                'labels': labels,
+                'datasets': [
+                    {
+                        'label': 'Donation Amount',
+                        'data': amounts,
+                        'borderColor': 'rgb(255, 99, 132)',
+                        'backgroundColor': 'rgba(255, 99, 132, 0.5)',
+                    }
+                ],
+            }
+
+            return jsonify(chart_data)
+
+    # Add the LineChartResource to the API with the endpoint '/line-chart'
+   
