@@ -17,7 +17,6 @@ const NGOLogin = ({ onSubmit }) => {
     onSubmit(formData);
   };
 
-
   return (
     <div className="container-fluid h-100" id="signuppage">
       <div className="row h-100">
@@ -57,10 +56,9 @@ const NGOLogin = ({ onSubmit }) => {
           </form>
         </div>
       </div>
-      </div>
- 
-
-)};
+    </div>
+  );
+};
 
 export default NGOLogin;
 
