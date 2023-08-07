@@ -3,7 +3,7 @@ from flask import request
 from Server.Models.Ngotb import NGO
 from app import db
 from flask_restful import reqparse
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, current_user
 
 class  ViewAllNgo(Resource):
     @jwt_required()
@@ -49,9 +49,11 @@ class RegisterNgo(Resource):
         )
 
         db.session.add(new_ngo)
+        user = current_user
+        user.assign_ngo_admin_role()
         db.session.commit()
 
-        return {"message": "NGO registered successfully."}, 201
+        return {"message": "NGO registered successfully and user status updated to admin."}, 201
 
 
 class ViewNgoById(Resource):
@@ -110,4 +112,3 @@ class ViewNgoById(Resource):
         db.session.commit()
 
         return {"message": "NGO updated successfully", "ngo": ngo.__repr__()}, 200
-
