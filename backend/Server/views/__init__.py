@@ -3,7 +3,7 @@ from flask_restful import Api
 
 
 from Server.views.ngo import ViewAllNgo,ViewNgoById,RegisterNgo
-from Server.views.users import GetAllUsers,AddUser,UserResourcesById,UserLogin, RoleResource
+from Server.views.users import GetAllUsers,AddUser,UserResourcesById,UserLogin
 from Server.views.reviews import GetAllReviews,ReviewsResource,AddReview
 from Server.views.voluteer import AllVolunteers,AddVolunteers,VolunteerResource
 from Server.views.donatios import DonationResource,DonationsResource
@@ -27,7 +27,6 @@ api.add_resource(GetAllUsers, '/users')
 api.add_resource(UserLogin,'/login')
 api.add_resource(AddUser, '/addusers')
 api.add_resource(UserResourcesById, '/users/<int:user_id>')
-api.add_resource(RoleResource, '/roles', '/roles/<int:role_id>')
 
 api.add_resource(GetAllReviews, '/reviews')
 api.add_resource(AddReview,'/addreview')
