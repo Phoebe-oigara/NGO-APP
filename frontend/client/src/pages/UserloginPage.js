@@ -11,8 +11,7 @@ function UserloginPage({ onSubmit }) {
 
   return (
 
-            <LoginForm onSubmit={handleSubmit} />
-    
+    <LoginForm onSubmit={handleSubmit} />
   );
 }
 
