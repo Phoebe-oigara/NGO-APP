@@ -11,6 +11,7 @@ import NGOloginPage from './pages/NGOLoginPage';
 import NGOList from './pages/NGOlistings';
 import Dashboard from './pages/Dashboard';
 
+
 // styling pages
 
 
@@ -22,7 +23,7 @@ function App() {
   return (
     <Router> 
       <div className="App">
-       
+    
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/signup" element={<SignupPage onSubmit={handleFormSubmit} />} />
@@ -30,7 +31,6 @@ function App() {
           <Route path="/userlogin" element={<UserloginPage onSubmit={handleFormSubmit} />} />
           <Route path="/ngologin" element={<NGOloginPage onSubmit={handleFormSubmit} />} />
           <Route path="/ngolist" element={<NGOList/>} />
-
           <Route path="/dashbord" element={<Dashboard />} />
 
         </Routes>
