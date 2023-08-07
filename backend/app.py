@@ -25,7 +25,7 @@ def initializing_models():
     from Server.Models.Ngotb import NGO
     from Server.views.reviews import Reviews
     from Server.Models.successtb import Successes
-    from Server.Models.users import Users
+    from Server.Models.users import Users,Role,UserRole
     from Server.Models.Volunteers import Volunteers
 
     
@@ -41,6 +41,7 @@ def create_app(config_name):
     app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///app.db'
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config['JWT_SECRET_KEY'] = 'Soweto@awsum2023'
+    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = 3600
     
     
     

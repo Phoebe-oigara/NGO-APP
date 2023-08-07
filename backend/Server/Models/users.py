@@ -15,7 +15,7 @@ class Users(db.Model):
     created_at = db.Column(db.DateTime,server_default=db.func.now() )
 
 
-   
+    # roles = db.relationship("Role", secondary="user_roles", back_populates="users")
 
     @validates('email')
     def validate_email(self, key, email):
@@ -41,3 +41,39 @@ class Users(db.Model):
     
     def __repr__(self):
         return f"User(id={self.id}, username='{self.name}', email='{self.email}', phone = {self.password})"
+
+    def has_role(self, role):
+        return bool(
+            Role.query
+            .join(Role.users)
+            .filter(Users.id == self.id)
+            .filter(Role.slug == role)
+            .count() == 1
+        )
+    
+    def assign_ngo_admin_role(self):
+        ngo_admin_role = Role.query.filter_by(slug='admin').first()
+        if ngo_admin_role:
+            self.roles.append(ngo_admin_role)
+
+
+class Role(db.Model):
+    __tablename__ = "roles"
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(36), nullable=False)
+    slug = db.Column(db.String(36), nullable=False, unique=True)
+
+    # users = db.relationship("User", secondary="user_roles", back_populates="roles")
+
+    
+
+class UserRole(db.Model):
+    __tablename__ = "user_roles"
+
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), primary_key=True)
+    role_id = db.Column(db.Integer, db.ForeignKey("roles.id"), primary_key=True)
+
+
+Users.roles = db.relationship("Role", secondary="user_roles", back_populates="users")
+Role.users = db.relationship("Users", secondary="user_roles", back_populates="roles")
