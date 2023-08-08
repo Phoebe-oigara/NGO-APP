@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NavigationButtons from './buttonnav';
+// import NavigationButtons from './buttonnav';
 import SuccessForm from './Successstories';
 
 
