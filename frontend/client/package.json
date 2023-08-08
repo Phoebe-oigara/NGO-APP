@@ -11,6 +11,7 @@
     "boostrap": "^2.0.0",
     "bootstrap": "^5.3.1",
     "chart.js": "^4.3.3",
+    "faker": "^6.6.6",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",

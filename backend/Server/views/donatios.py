@@ -92,7 +92,7 @@ class DonationsResource(Resource):
             # Handle other errors (e.g., database errors) with a 500 Internal Server Error
             abort(500)
 
-    class LineChartResource(Resource):
+class LineChartResource(Resource):
         def get(self):
             # Query the database to fetch donation data
             donations_data = db.session.query(Donations.donation_date, func.sum(Donations.amount)).group_by(Donations.donation_date).all()
@@ -115,6 +115,4 @@ class DonationsResource(Resource):
             }
 
             return jsonify(chart_data)
-
-    # Add the LineChartResource to the API with the endpoint '/line-chart'
    

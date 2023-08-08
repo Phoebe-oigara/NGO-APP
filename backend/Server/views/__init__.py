@@ -6,7 +6,7 @@ from Server.views.ngo import ViewAllNgo,ViewNgoById,RegisterNgo
 from Server.views.users import GetAllUsers,AddUser,UserResourcesById,UserLogin, RoleResource
 from Server.views.reviews import GetAllReviews,ReviewsResource,AddReview
 from Server.views.voluteer import AllVolunteers,AddVolunteers,VolunteerResource
-from Server.views.donatios import DonationResource,DonationsResource, LineChartResource
+from Server.views.donatios import DonationResource,DonationsResource,LineChartResource
 from Server.views.success import SuccessesResource,SuccessesListResource
 
 
