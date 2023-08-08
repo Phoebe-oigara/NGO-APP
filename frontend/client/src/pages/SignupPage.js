@@ -10,6 +10,8 @@ function SignupPage({ onSubmit }) {
 
   return (
     
+     
+    
 
       <UserSignup onSubmit={handleSubmit} />
     
