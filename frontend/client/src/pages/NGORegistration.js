@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+
 import { Image } from 'cloudinary-react'; // Import Cloudinary component
 import { Cloudinary } from 'cloudinary-core';
 
 const cloudinaryCore = new Cloudinary({ cloud_name: 'dqwwbbdid' });
+
+// import { Link } from 'react-router-dom';
+
 
 const NGORegister = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
@@ -16,6 +20,7 @@ const NGORegister = ({ onSubmit }) => {
     image: '',
     url: '',
   });
+
 
   const handleImageUpload = async (e) => {
     try {
@@ -43,6 +48,9 @@ const NGORegister = ({ onSubmit }) => {
   
 
   const [errorMessage, setErrorMessage] = useState('');
+
+  const [ setErrorMessage] = useState('');
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
