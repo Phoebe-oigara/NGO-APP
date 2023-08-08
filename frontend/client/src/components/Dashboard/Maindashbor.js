@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NavigationButtons from './buttonnav';
 
 
+
 const Maindash = () => {
   return (
     <div className="container-fluid">
@@ -21,6 +22,7 @@ const Maindash = () => {
         {/* content area */}
         <div className="col-md-9" >
           <NavigationButtons />
+       
         </div>
       </div>
     </div>

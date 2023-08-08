@@ -1,10 +1,15 @@
 
 import React, { useState } from 'react';
+
 import { useEffect} from 'react';
 import jwt_decode from "jwt-decode"
+
+import axios from 'axios';
+
+
 const UserSignup = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
-    name: '',
+    fullname: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -15,13 +20,38 @@ const UserSignup = ({ onSubmit }) => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Pass the form data to the parent component's onSubmit function
+  
+    if (formData.password !== formData.confirmPassword) {
+      console.error('Passwords do not match');
+      return;
+    }
+  
+    try {
+      const response = await axios.post('/ngoconnect/addusers', formData, {
+        headers: {
+          'Content-Type': 'application/json' // Set the content type to JSON
+        }
+      });
+      console.log(response.data);
+  
+      setFormData({
+        fullname: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+      });
+    } catch (error) {
+      console.error('Error adding user:', error);
+      // Handle error cases here
+    }
+  
     onSubmit(formData);
 
   
   };
+  
 
   const [user, setUser] = useState({})
 
@@ -81,10 +111,10 @@ const UserSignup = ({ onSubmit }) => {
           <input
             type="text"
             className="form-control"
-            name="name"
-            value={formData.name}
+            name="fullname"
+            value={formData.fullname}
             onChange={handleChange}
-            placeholder="Name"
+            placeholder="Full Name"
             required
           />
         </div>

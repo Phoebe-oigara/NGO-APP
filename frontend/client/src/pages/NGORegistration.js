@@ -25,7 +25,17 @@ const NGORegister = ({ onSubmit }) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('/ngoconnect/register', formData);
+      // Get the access token from localStorage
+      const accessToken = localStorage.getItem('access_token');
+      
+      // Include the access token in the request headers
+      const config = {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+        },
+      };
+
+      const response = await axios.post('/ngoconnect/register', formData, config);
 
       if (response.data.success) {
         onSubmit(formData);
@@ -39,7 +49,6 @@ const NGORegister = ({ onSubmit }) => {
   };
 
   return (
-
     <div className="container-fluid h-100" id="signuppage">
     <div className="row h-100">
       <div className="col-12 col-md-6 bg-image-container d-none d-md-block">
@@ -137,10 +146,8 @@ const NGORegister = ({ onSubmit }) => {
       </div>
     </div>
   </div>
-  
-
- 
-);
+    
+  );
 };
 
 export default NGORegister;
