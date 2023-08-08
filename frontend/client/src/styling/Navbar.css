@@ -21,13 +21,12 @@ nav {
   
 ul {
     list-style: none;
-    display: flex;
     margin: 0;
   }
   
-li {
+/* li {
     display: inline-block;
-}
+} */
   
 li a {
     text-decoration: none;
@@ -47,6 +46,7 @@ li a.active {
   
 .nav-list {
     font-size: 16px;
+    display: flex;
   }
   
   
