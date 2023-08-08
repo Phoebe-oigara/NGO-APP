@@ -51,6 +51,7 @@ class AddUser(Resource):
     
     def post(self):
         data = request.get_json()
+        print("Received data:", data)
         fullname = data.get('fullname')
         email = data.get('email')
         password = data.get('password')
@@ -61,7 +62,7 @@ class AddUser(Resource):
             return {'error': 'Invalid name,email or Password.'}, 400
 
         new_user = Users(fullname=fullname, email=email, password=password)
-
+        new_user.assign_ngo_admin_role()
         print("Roles before assignment:", new_user.roles)
 
         for role_slug in roles:
