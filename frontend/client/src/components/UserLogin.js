@@ -25,7 +25,6 @@ const LoginForm = ({ onSubmit }) => {
         <div className="col-12 col-md-6 bg-image-container d-none d-md-block">
           <img src="/images/loginpage.jpg" alt="userlogin" className="img-fluid" />
         </div>
-
         <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
           <form onSubmit={handleSubmit}  className='form-width'>
             {/* Add inline style to the form to set its width to 40% */}

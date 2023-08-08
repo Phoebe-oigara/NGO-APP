@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 const NGORegister = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
@@ -14,7 +14,7 @@ const NGORegister = ({ onSubmit }) => {
     url: ''
   });
 
-  const [errorMessage, setErrorMessage] = useState('');
+  const [ setErrorMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;

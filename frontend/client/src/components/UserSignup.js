@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-
+import { UseEffect } from 'react';
 const UserSignup = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -18,17 +18,46 @@ const UserSignup = ({ onSubmit }) => {
     e.preventDefault();
     // Pass the form data to the parent component's onSubmit function
     onSubmit(formData);
+
+  function handleCallbackResponse(response){
+  console.log("Encoded JWT ID token: " + response.credential);
+  }
+
+  UseEffect(() => {
+    /* global google */
+    google.accounts.id.initialize({
+      client_id: "319112613135-vp74439lma8pcijfslmardni7e8rmf2q.apps.googleusercontent.com",
+      callback: handleCallbackResponse
+    });
+
+    google.accounts.id.renderButton(
+      document.getElementById("signInDiv"),
+      { theme: "outline", size: "large"}
+      
+    )
+    
+
+    }, []);
   };
 
+
+
+
+
+
   return (
+    
     <div className="container-fluid h-100" id="signuppage">
+
     <div className="row h-100">
+          
       <div className="col-12 col-md-6 bg-image-container d-none d-md-block">
         <img src="/images/login.jpg" alt="signup " className="img-fluid" />
       </div>
 
       <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
       <form onSubmit={handleSubmit} className='form-width'>
+     
         <div className="mb-3">
           <h1>User Sign Up</h1>
           <input
@@ -78,16 +107,27 @@ const UserSignup = ({ onSubmit }) => {
           <button type="submit" className="btn btn-primary">
             Create Account
           </button>
-          <button type="button" className="btn btn-secondary">
+          {/* <button type="button" className="btn btn-secondary">
             Register NGO
-          </button>
+          </button> */}
         </div>
+       
+          <div id="signInDiv"> 
+          <h1> test</h1>
+          </div>
+        
+        
+        
+
+        
       </form>
+     
 
         
       </div>
     </div>
   </div>
+  
   
   );
 };
