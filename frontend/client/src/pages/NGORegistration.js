@@ -84,6 +84,15 @@ const NGORegister = ({ onSubmit }) => {
     }
   };
 
+    const categories = [
+    'Choose Category',
+    'GBV',
+    'Animal Rescue',
+    'Refugee',
+    'Social Help',
+    'Any Other'
+  ];
+
   return (
     <div className="container-fluid h-100" id="signuppage">
     <div className="row h-100">
