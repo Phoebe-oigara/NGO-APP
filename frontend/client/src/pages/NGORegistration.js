@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+
+import { Image } from 'cloudinary-react'; // Import Cloudinary component
+import { Cloudinary } from 'cloudinary-core';
+
+const cloudinaryCore = new Cloudinary({ cloud_name: 'dqwwbbdid' });
+
 // import { Link } from 'react-router-dom';
+
 
 const NGORegister = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
@@ -11,10 +18,39 @@ const NGORegister = ({ onSubmit }) => {
     location: '',
     category: 'GBV', // Default value for the dropdown
     image: '',
-    url: ''
+    url: '',
   });
 
+
+  const handleImageUpload = async (e) => {
+    try {
+      const file = e.target.files[0]; // Get the selected image file
+  
+      // Upload image to Cloudinary
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', 'NGO_CONNECT'); // Replace with your Cloudinary upload preset
+  
+      const response = await axios.post(
+        `https://api.cloudinary.com/v1_1/${cloudinaryCore.config().cloud_name}/upload`,
+        formData
+      );
+  
+      // Set the Cloudinary public ID (identifier) in the formData
+      setFormData((prevData) => ({
+        ...prevData,
+        image: response.data.public_id,
+      }));
+    } catch (error) {
+      console.error('Error uploading image:', error);
+    }
+  };
+  
+
+  const [errorMessage, setErrorMessage] = useState('');
+
   const [ setErrorMessage] = useState('');
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,11 +63,11 @@ const NGORegister = ({ onSubmit }) => {
     try {
       // Get the access token from localStorage
       const accessToken = localStorage.getItem('access_token');
-      
+
       // Include the access token in the request headers
       const config = {
         headers: {
-          'Authorization': `Bearer ${accessToken}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       };
 
@@ -56,12 +92,11 @@ const NGORegister = ({ onSubmit }) => {
       </div>
 
       <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
+          <form onSubmit={handleSubmit} className="form-width">
+            <h2>Ngo Registration</h2>
 
-    
-          <form onSubmit={handleSubmit}  className='form-width'>
-          <h2>Ngo Registration</h2>
-            
-          <div className="input-container">
+            {/* ... (existing input fields) */}
+            <div className="input-container">
           <input
             type="text"
             name="name"
@@ -70,8 +105,8 @@ const NGORegister = ({ onSubmit }) => {
             onChange={handleChange}
             required
           />
-          </div>
-          <div className="input-container">
+           </div>
+           <div className="input-container">
           <input
             type="email"
             name="email"
@@ -115,19 +150,9 @@ const NGORegister = ({ onSubmit }) => {
           <option value="Social Help">Social Help</option>
           <option value="Any Other">Any Other</option>
           </select>
-          </div>
-          <div className="input-container">
-          <input
-          type="text"
-          name="image"
-          placeholder="Image URL"
-          value={formData.image}
-          onChange={handleChange}
-          required
-          />
-          </div>
+          </div>  
 
-            <div className="input-container">
+          <div className="input-container">
             <input
               type="text"
               name="url"
@@ -138,15 +163,34 @@ const NGORegister = ({ onSubmit }) => {
             />
           </div>
             <div className="input-container">
+              {/* Input for image upload */}
+              <input
+                type="file"
+                name="image"
+                accept="image/*"
+                onChange={handleImageUpload}
+                required
+              />
+            </div>
+
+            <div className="input-container">
+              {/* Display uploaded image using Cloudinary component */}
+              {formData.image && (
+                <Image
+                  cloudName={cloudinaryCore.config().cloud_name}
+                  publicId={formData.image}
+                  width="150"
+                  height="150"
+                />
+              )}
+            </div>
+            <div className="input-container">
               <button type="submit" className="btn btn-primary btn-block button-width">Register</button>
             </div>
           </form>
-
-        
+        </div>
       </div>
     </div>
-  </div>
-    
   );
 };
 
