@@ -1,9 +1,15 @@
 
 import React, { useState } from 'react';
 
+import { useEffect} from 'react';
+import jwt_decode from "jwt-decode"
+
+import axios from 'axios';
+
+
 const UserSignup = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
-    name: '',
+    fullname: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -14,18 +20,89 @@ const UserSignup = ({ onSubmit }) => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Pass the form data to the parent component's onSubmit function
+  
+    if (formData.password !== formData.confirmPassword) {
+      console.error('Passwords do not match');
+      return;
+    }
+  
+    try {
+      const response = await axios.post('/ngoconnect/addusers', formData, {
+        headers: {
+          'Content-Type': 'application/json' // Set the content type to JSON
+        }
+      });
+      console.log(response.data);
+  
+      setFormData({
+        fullname: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+      });
+    } catch (error) {
+      console.error('Error adding user:', error);
+      // Handle error cases here
+    }
+  
     onSubmit(formData);
+
+  
   };
+  
+
+  const [user, setUser] = useState({})
+
+
+  function handleCallbackResponse(response){
+    console.log("Encoded JWT ID token: " + response.credential);
+    var userObject = jwt_decode(response.credential);
+    console.log(userObject);
+    setUser(userObject);
+    document.getElementById("signInDiv").hidden = true;
+    }
+
+    function handleSignOut(event) {
+      setUser({});
+      document.getElementById("signInDiv").hidden = false;
+
+    }
+  
+    useEffect(() => {
+      /* global google */
+      google.accounts.id.initialize({
+        client_id: "319112613135-vp74439lma8pcijfslmardni7e8rmf2q.apps.googleusercontent.com",
+        callback: handleCallbackResponse
+      });
+  
+      google.accounts.id.renderButton(
+        document.getElementById("signInDiv"),
+        { theme: "outline", size: "large"}
+        
+      );
+      google.accounts.id.prompt();
+      
+  
+      }, []);
+      // If we have no user: sign in button
+      // If we have no user: show the login button
+
+
+
 
   return (
+    
     <div className="container-fluid h-100" id="signuppage">
+    
+
     <div className="row h-100">
+          
       <div className="col-12 col-md-6 bg-image-container d-none d-md-block">
         <img src="/images/login.jpg" alt="signup " className="img-fluid" />
       </div>
+   
 
       <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
       <form onSubmit={handleSubmit} className='form-width'>
@@ -34,10 +111,10 @@ const UserSignup = ({ onSubmit }) => {
           <input
             type="text"
             className="form-control"
-            name="name"
-            value={formData.name}
+            name="fullname"
+            value={formData.fullname}
             onChange={handleChange}
-            placeholder="Name"
+            placeholder="Full Name"
             required
           />
         </div>
@@ -78,16 +155,38 @@ const UserSignup = ({ onSubmit }) => {
           <button type="submit" className="btn btn-primary">
             Create Account
           </button>
-          <button type="button" className="btn btn-secondary">
-            Register NGO
-          </button>
+          <div className="Google">
+            <div id="signInDiv"></div>
+            { Object.keys(user).length !== 0 &&
+              <button onclick={ (e) => handleSignOut(e)}> Sign Out </button>
+            }
+            
+            { user &&
+              <div>
+                <img src={user.picture} alt="userpicture"/>
+                <h3>{user.name}</h3>
+              </div>
+
+            }
+      
+
+          </div>
         </div>
+       
+          
+        
+        
+        
+
+        
       </form>
+     
 
         
       </div>
     </div>
   </div>
+  
   
   );
 };
