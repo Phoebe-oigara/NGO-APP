@@ -43,18 +43,21 @@
     padding: 9px;
     border-radius: 6px;
     width: 50%;
-    font-weight: bold 
+    font-weight: bold;
+    text-decoration: none;
 
 }
 .button2{
     margin: 0;
     border: solid var(--primary) 1px;
-    padding: 9px;
+    padding: 10px;
     border-radius: 6px;
     width: 50%;
     background-color: var(--static);
-    margin-left: -50px;
+    margin-left: -100px;
     font-weight: bold;
+    text-decoration: none;
+    color: var(--primary);
 
 }
 
@@ -78,7 +81,10 @@
     padding-bottom: 10px;
 }
 
+#header{
+    margin-top: 60px;
 
+}
   
 
   

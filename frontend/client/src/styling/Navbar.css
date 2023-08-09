@@ -1,63 +1,74 @@
 /* Navbar.css */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px 0 20px;
-    width: 90%;
-    position: fixed;
-    top: 0;
-    z-index: 100;
-    background-color: #ffffff;
-   
-  }
+.custom-navbar nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  width: 100%; /* Cover 100% of the page */
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  background-color: #ffffff;
+
   
-.site-title {
-    font-size: 20px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #333;
-  }
-  
-ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-  }
-  
-li {
-    display: inline-block;
 }
-  
-li a {
-    text-decoration: none;
-    color: #333;
-    padding: 5px 10px;
-    border-radius: 5px;
-  }
-  
-li a:hover {
-    background-color: red;
-  }
-  
-  /* Optional: Style the active link */
-li a.active {
-    color: #ff0000;
-  }
-  
-.nav-list {
-    font-size: 16px;
-  }
-  
-  
+
+.custom-navbar .site-title {
+  font-size: 15px; /* Increased font size */
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+.custom-navbar .site-title img {
+  width: 15%; /* Image width set to 40% */
+  margin-right: 117px; /* Adding space between logo and text */
+}
+
+.custom-navbar ul {
+  list-style: none;
+  margin: 0;
+  display: flex;
+  align-items: center; /* Vertically center the list */
+}
+
+.custom-navbar li {
+  margin: 0 15px; /* Adding space between list items */
+}
+
+.custom-navbar li a {
+  text-decoration: none;
+  color: #333;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease; /* Adding transition effect */
+}
+
+.custom-navbar li a:hover {
+  background-color: #f0f0f0; /* Lighter color on hover */
+}
+
+.custom-navbar li a.active {
+  color: #ff0000;
+}
+
+.content {
+  margin-top: 20px; /* Adjust this value as needed */
+}
+
 /* Add media query for responsive design */
 @media (max-width: 768px) {
-    .site-title {
-      font-size: 18px;
-    }
-    
-    li a {
-      padding: 5px;
-    }
+  .custom-navbar .site-title {
+    font-size: 20px;
   }
-  
+
+  .custom-navbar li {
+    margin: 0 10px; /* Reduce space between list items */
+  }
+
+  .custom-navbar li a {
+    padding: 6px 10px;
+  }
+}

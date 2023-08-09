@@ -49,29 +49,21 @@ class GetAllUsers(Resource):
 
 class AddUser(Resource):
     def post(self):
-        try:
-            data = request.get_json()
-            fullname = data.get('fullname')
-            email = data.get('email')
-            password = data.get('password')
-            roles = data.get('roles', ['user'])
-            
-            if not fullname or not email or not password:
-                return {'error': 'Invalid name, email, or password.'}, 400
+        data = request.get_json()
+        print("Received data:", data)
+        fullname = data.get('fullname')
+        email = data.get('email')
+        password = data.get('password')
+        roles = data.get('roles', ['user'])
+     
 
-            new_user = Users(fullname=fullname, email=email, password=password)
+        if not fullname or not email or not password:
+            return {'error': 'Invalid name,email or Password.'}, 400
 
-            for role_slug in roles:
-                role = Role.query.filter_by(slug=role_slug).first()
-                if role:
-                    new_user.roles.append(role)
-            
-            db.session.add(new_user)
-            db.session.commit()
-            
-            return {'message': 'New user created successfully'}, 201
-        except Exception as e:
-            return {"error": "An error occurred while processing your request.", "details": str(e)}, 500
+        new_user = Users(fullname=fullname, email=email, password=password)
+        new_user.assign_ngo_admin_role()
+        print("Roles before assignment:", new_user.roles)
+
 
 
     

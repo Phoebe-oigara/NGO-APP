@@ -1,0 +1,27 @@
+.selector {
+  background-color: white;
+  padding: 8px;
+  margin-top: 5px;
+  width: 100%;
+  border-radius: 6px;
+}
+#reg-button{
+    margin-top: 7px;
+    width: 100%;
+}
+#text{
+    padding-bottom: 40px;
+}
+.guide{
+    margin-top: 10px;
+    margin-bottom: 0px;
+    opacity: 60%;
+}
+#spacing{
+    margin-top: 10px;
+}
+
+input {
+    border:  solid 1px #00000031 !important;
+    border-radius: 4px !important;
+}

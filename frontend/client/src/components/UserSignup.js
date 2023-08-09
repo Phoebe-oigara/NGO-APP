@@ -1,9 +1,14 @@
-
 import React, { useState } from 'react';
+
+import { useEffect} from 'react';
+import jwt_decode from "jwt-decode"
+
+import axios from 'axios';
+
 
 const UserSignup = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
-    name: '',
+    fullname: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -14,18 +19,132 @@ const UserSignup = ({ onSubmit }) => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Pass the form data to the parent component's onSubmit function
+  
+    if (formData.password !== formData.confirmPassword) {
+      console.error('Passwords do not match');
+      return;
+    }
+  
+    try {
+      const response = await axios.post('/ngoconnect/addusers', formData, {
+        headers: {
+          'Content-Type': 'application/json' // Set the content type to JSON
+        }
+      });
+      console.log(response.data);
+  
+      setFormData({
+        fullname: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+      });
+    } catch (error) {
+      console.error('Error adding user:', error);
+      // Handle error cases here
+    }
+  
     onSubmit(formData);
+
+  
   };
+  
+
+  const [user, setUser] = useState({})
+
+
+  async function handleCallbackResponse(response){
+    console.log("Encoded JWT ID token: " + response.credential);
+    var userObject = jwt_decode(response.credential);
+    console.log(userObject);
+    setUser(userObject);
+    document.getElementById("signInDiv").hidden = true;
+    
+
+
+  // Send a push request to your API
+  await sendPushRequestToAPI(userObject);// Function to send the push request
+}
+
+
+  async function sendPushRequestToAPI(userObject) {
+    try{
+    // Replace 'YOUR_API_URL' with the actual URL of your API
+      const apiUrl = '/ngoconnect/addusers';
+
+
+  // Define the data to send in the push request
+  const requestData = {
+    user: userObject,
+    // Any other data you want to send
+    };
+
+  // Make the push request using the fetch API
+  const response = await fetch(apiUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      // Add any other headers your API requires
+    },
+    body: JSON.stringify(requestData),
+  });
+
+  // Handle the API response as needed
+  console.log('API Response:', response);
+  // You can add more logic here to handle different response scenarios
+  } catch (error) {
+  // Handle errors that occurred during the push request
+  console.error('Error sending push request:', error);
+  }
+}
+
+
+
+
+
+   
+  
+    useEffect(() => {
+      /* global google */
+      google.accounts.id.initialize({
+        client_id: "319112613135-vp74439lma8pcijfslmardni7e8rmf2q.apps.googleusercontent.com",
+        callback: handleCallbackResponse
+      });
+  
+      google.accounts.id.renderButton(
+        document.getElementById("signInDiv"),
+        { theme: "outline", size: "large"}
+        
+      );
+      google.accounts.id.prompt();
+
+      
+    // eslint-disable-next-line
+    },[]);
+
+
+
+      // If we have no user: sign in button
+      // If we have no user: show the login button
+
+
+
 
   return (
+
+
+    
     <div className="container-fluid h-100" id="signuppage">
+    
+
     <div className="row h-100">
+          
       <div className="col-12 col-md-6 bg-image-container d-none d-md-block">
         <img src="/images/login.jpg" alt="signup " className="img-fluid" />
       </div>
+   
 
       <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
       <form onSubmit={handleSubmit} className='form-width'>
@@ -34,10 +153,10 @@ const UserSignup = ({ onSubmit }) => {
           <input
             type="text"
             className="form-control"
-            name="name"
-            value={formData.name}
+            name="fullname"
+            value={formData.fullname}
             onChange={handleChange}
-            placeholder="Name"
+            placeholder="Full Name"
             required
           />
         </div>
@@ -78,19 +197,34 @@ const UserSignup = ({ onSubmit }) => {
           <button type="submit" className="btn btn-primary">
             Create Account
           </button>
-          <button type="button" className="btn btn-secondary">
-            Register NGO
-          </button>
+          <div className="Google">
+            <div id="signInDiv"></div>
+            
+            
+            { user &&
+              <div>
+                <img src={user.picture} alt="userpicture"/>
+                <h3>{user.name}</h3>
+              </div>
+
+            }
+      
+
+          </div>
         </div>
+
       </form>
+     
 
         
       </div>
     </div>
   </div>
   
+  
   );
 };
+
 
 export default UserSignup;
 

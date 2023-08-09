@@ -4,6 +4,7 @@ from config import app_config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
+from flask_cors import CORS
 
 
 
@@ -13,9 +14,13 @@ db = SQLAlchemy()
 
 app = Flask(__name__)
 
+
 base_url = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'
 consumer_key = 'DhKAsjKafEfTtnQtOk3h4muZPqjNeY2h'
 consumer_secret = 'ktfcYuFVzzyPMlBL'
+
+CORS(app)
+
 
 
 jwt = JWTManager()

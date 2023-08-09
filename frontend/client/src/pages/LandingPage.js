@@ -6,7 +6,7 @@ import MyListComponent from '../components/homeselector';
 import HomepageHeader from '../components/Hompageheader';
 import HomepageRegister from '../components/Homepageregister';
 import NavBar from '../components/Navbar';
-
+import Footer from '../components/footer';
 
 
     const LandingPage = () => {
@@ -20,6 +20,8 @@ import NavBar from '../components/Navbar';
           <MyListComponent />
         </div>
         <HomepageRegister />
+        <Footer />
+
       </div>
     
 

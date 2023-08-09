@@ -9,10 +9,14 @@ function SignupPage({ onSubmit }) {
   };
 
   return (
+    
+     
+    
 
       <UserSignup onSubmit={handleSubmit} />
     
   );
+  
 }
 
 export default SignupPage;

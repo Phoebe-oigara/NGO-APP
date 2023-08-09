@@ -1,7 +1,7 @@
 import './App.css';
 
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Import BrowserRouter and update the imports
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; 
 
 import LandingPage from './pages/LandingPage';
 import SignupPage from './pages/SignupPage';
@@ -10,6 +10,8 @@ import UserloginPage from './pages/UserloginPage';
 import NGOloginPage from './pages/NGOLoginPage';
 import NGOList from './pages/NGOlistings';
 import Dashboard from './pages/Dashboard';
+import NGODetails from './components/SingleNGO';
+
 
 
 // styling pages
@@ -32,6 +34,9 @@ function App() {
           <Route path="/ngologin" element={<NGOloginPage onSubmit={handleFormSubmit} />} />
           <Route path="/ngolist" element={<NGOList/>} />
           <Route path="/dashbord" element={<Dashboard />} />
+          <Route path="/ngoconnect/ngo/:id" element={<NGODetails />} />
+
+      
 
         </Routes>
       </div>

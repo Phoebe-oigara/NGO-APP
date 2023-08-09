@@ -1,93 +1,116 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
 import { Link } from 'react-router-dom';
+import axios from "axios";
+import '../styling/registration.css';
 
-const NGORegister = ({ onSubmit }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    ngoName: '',
-    email: '',
-    description: '',
-    location: '',
-    category: 'GBV', // Default value for the dropdown
-    image: '',
-    url: ''
-  });
+const NGORegister = () => {
+ 
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [description, setDescription] = useState("");
+    const [location, setLocation] = useState("");
+    const [category, setCategory] = useState("");
+    const [image, setImage] = useState("");
+    const [url, setUrl] = useState("");
+  
 
-  const [errorMessage, setErrorMessage] = useState('');
+  function handleImage(e) {
+    setImage(e.target.files[0]);
+  }
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      // Get the access token from localStorage
-      const accessToken = localStorage.getItem('access_token');
-      
-      // Include the access token in the request headers
-      const config = {
-        headers: {
-          'Authorization': `Bearer ${accessToken}`,
-        },
-      };
-
-      const response = await axios.post('/ngoconnect/register', formData, config);
-
-      if (response.data.success) {
-        onSubmit(formData);
-      } else {
-        setErrorMessage(response.data.message || 'Registration failed.');
-      }
-    } catch (error) {
-      console.error('Error while submitting form:', error);
-      setErrorMessage('An error occurred while processing your request.');
+  function handleApi(e) {
+    e.preventDefault()
+    if (!image) {
+      console.log("Please select an image.");
+      return;
     }
-  };
+
+    const formData = new FormData();
+    formData.append("file", image);
+    formData.append("upload_preset", "ngoconnect"); // Your Cloudinary upload preset
+
+    axios
+      .post("https://api.cloudinary.com/v1_1/dpz04pwpd/image/upload", formData)
+      .then((res) => {
+        console.log("Image uploaded successfully:");
+        setImage(res.data.secure_url);
+
+       
+       
+
+        axios
+          .post("http://localhost:5000/ngoconnect/register", {
+            image,
+            name,
+            description,
+            location,
+            category,
+            email,
+            url
+          })
+          .then((response) => {
+            console.log("register success, data stored:", response.data.message);
+          })
+          .catch((error) => {
+            console.error("Error storing image data:", error);
+          });
+      
+      })
+      .catch((error) => {
+        console.error("Error uploading image:", error);
+      });
+  }
 
   return (
-    <div className="container-fluid h-100" id="signuppage">
-    <div className="row h-100">
-      <div className="col-12 col-md-6 bg-image-container d-none d-md-block">
-        <img src="/images/ngo-reister.jpg" alt="signup " className="img-fluid" />
-      </div>
+    <div>
+      <div>
 
-      <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
+        <div className="container-fluid h-100" id="signuppage">
+          <div className="row h-100">
+          <div className="col-12 col-md-6 bg-image-container d-none d-md-block">
+          <img src="/images/ngo-reister.jpg" alt="signup " className="img-fluid" />
+          </div>
 
-    
-          <form onSubmit={handleSubmit}  className='form-width'>
+
+          <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
+          <form className="form-width">
           <h2>Ngo Registration</h2>
-            
+
+          <p> Fill in the form bellow to enlist your NGO<br></br>
+              <span>All filed are mandatory to fill in.</span>
+            </p>
+
+
+          {/* ... (existing input fields) */}
           <div className="input-container">
-          <input
+            <input
             type="text"
             name="name"
             placeholder="Ngo Name"
-            value={formData.name}
-            onChange={handleChange}
+            value={name}
+            onChange={(e)=>setName(e.target.value)}
             required
-          />
-          </div>
+            />
+            </div>
           <div className="input-container">
-          <input
+            <input
             type="email"
             name="email"
             placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
+            value={email}
+            onChange={(e)=>setEmail(e.target.value)}
             required
-          />
+            />
           </div>
           <div className="input-container">
+          <p className='guide'> Give a description of what your organization</p>
           <input
+          id="text"
           type="text"
           name="description"
           placeholder="Description"
-          value={formData.description}
-          onChange={handleChange}
+          value={description}
+          onChange={(e)=>setDescription(e.target.value)}
           required
           />
           </div>
@@ -96,17 +119,19 @@ const NGORegister = ({ onSubmit }) => {
           type="text"
           name="location"
           placeholder="Location"
-          value={formData.location}
-          onChange={handleChange}
+          value={location}
+          onChange={(e)=>setLocation(e.target.value)}
           required
           />
           </div>
           <div className="input-container">
+          <p className='guide'> Choose wgich field  your Ngo helps in</p>
           <select
           name="category"
-          value={formData.category}
-          onChange={handleChange}
+          value={category}
+          onChange={(e)=>setCategory(e.target.value)}
           required
+          className='selector'
           >
           <option value="">Choose Category</option>
           <option value="GBV">GBV</option>
@@ -116,38 +141,34 @@ const NGORegister = ({ onSubmit }) => {
           <option value="Any Other">Any Other</option>
           </select>
           </div>
-          <div className="input-container">
-          <input
-          type="text"
-          name="image"
-          placeholder="Image URL"
-          value={formData.image}
-          onChange={handleChange}
-          required
-          />
-          </div>
 
-            <div className="input-container">
+
+          <div className="input-container">
             <input
               type="text"
               name="url"
               placeholder="URL"
-              value={formData.url}
-              onChange={handleChange}
+              value={url}
+              onChange={(e)=>setUrl(e.target.value)}
               required
-            />
-          </div>
-            <div className="input-container">
-              <button type="submit" className="btn btn-primary btn-block button-width">Register</button>
+              />
             </div>
-          </form>
+          
+            <input type="file" name="file" onChange={handleImage} />
 
-        
-      </div>
-    </div>
-  </div>
-    
-  );
-};
+          <div className="input-container">
+          <button onClick={handleApi} type="submit" className="btn btn-block button-width" id="spacing">Register</button>
+          <Link to='/' className="btn btn" id="reg-button">Home</Link>
+          </div>
+
+          
+          </form>
+          </div>
+          </div>
+          </div>
+                </div>
+              </div>
+            );
+          };
 
 export default NGORegister;
