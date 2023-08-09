@@ -76,7 +76,7 @@ const NGOList = () => {
 
                   <img src={ngo.image} alt={ngo.name} className="ngo-image" />
 
-                  <Link to={`/ngo/${ngo.id}`}>View Details</Link>
+                  <Link to={`/ngoconnect/ngo/${ngo.id}`}>View Details</Link>
                 </li>
               ))}
             </ul>
@@ -105,5 +105,4 @@ const NGOList = () => {
 
 export default NGOList;
 
-export default NGOList;
 
