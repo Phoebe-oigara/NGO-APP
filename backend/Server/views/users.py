@@ -48,7 +48,6 @@ class GetAllUsers(Resource):
         return {'Users': users_list}, 200
 
 class AddUser(Resource):
-    
     def post(self):
         data = request.get_json()
         print("Received data:", data)
@@ -65,14 +64,7 @@ class AddUser(Resource):
         new_user.assign_ngo_admin_role()
         print("Roles before assignment:", new_user.roles)
 
-        for role_slug in roles:
-            role = Role.query.filter_by(slug=role_slug).first()
-            if role:
-                new_user.roles.append(role)
-        db.session.add(new_user)
-        db.session.commit()
-        
-        return {'message': 'New user created successfully'}, 201
+
 
     
    

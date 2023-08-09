@@ -1,4 +1,6 @@
+import re
 from flask_restful import Resource
+from sqlalchemy.exc import IntegrityError
 from flask import request
 from Server.Models.Ngotb import NGO
 from app import db
@@ -39,6 +41,11 @@ class RegisterNgo(Resource):
         location = data.get('location')
         url = data.get('url')
 
+        existing_ngo = NGO.query.filter_by(email=email).first()
+
+        if existing_ngo:
+            return {"message": "The provided email is already registered."}, 400 
+
         new_ngo = NGO(
             name=name,
             description=description,
@@ -48,7 +55,6 @@ class RegisterNgo(Resource):
             location=location,
             url=url
         )
-
         try:
             db.session.add(new_ngo)
             db.session.commit()
@@ -58,6 +64,7 @@ class RegisterNgo(Resource):
             print("Error while registering NGO:", e)
 
         return {"message": "NGO registered successfully and user status updated to admin."}, 201
+
 
 
 class ViewNgoById(Resource):

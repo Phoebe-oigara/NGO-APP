@@ -25,10 +25,12 @@ class NGO(db.Model):
 
     @validates('email')
     def validate_email(self, key, email):
-            assert '@' in email, "Email address must contain the @ symbol."
-            assert '.' in email.split('@')[-1], "Email address must have a valid domain name."
-            return email
-    
+        if '@' not in email:
+            raise ValueError("Email address must contain the @ symbol.")
+        if '.' not in email.split('@')[-1]:
+            raise ValueError("Email address must have a valid domain name.")
+        return email
+
     
     @validates('url')
     def validate_url(self, key, url):
@@ -36,6 +38,7 @@ class NGO(db.Model):
         if not all([parsed_url.scheme, parsed_url.netloc]):
             raise AssertionError("Invalid URL. Please provide a valid URL with a scheme (e.g., http, https) and netloc.")
         return url
+
     
     def __repr__(self):
         return (

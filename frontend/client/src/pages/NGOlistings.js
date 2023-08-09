@@ -66,6 +66,7 @@ const NGOList = () => {
       <div className='container'>
         <div className="row">
           <div className="col-md-8">
+
           <div className="card-deck">
                 {currentNgos.map(ngo => (
                   <div key={ngo.id} className='card mb-4 overflow-hidden' >
@@ -86,6 +87,25 @@ const NGOList = () => {
                   </div>
                 ))}
               </div>
+
+
+
+            <ul>
+              {currentNgos.map(ngo => (
+                <li key={ngo.id} className='single-list-item'>
+                  <h3>{ngo.name}</h3>
+                  <p className='category'>Category: <span>{ngo.category}</span></p>
+                  <p>{ngo.description}</p>
+                  <p>{ngo.location}</p>
+
+                  <img src={ngo.image} alt={ngo.name} className="ngo-image" />
+
+                  <Link to={`/ngoconnect/ngo/${ngo.id}`}>View Details</Link>
+                </li>
+              ))}
+            </ul>
+
+
 
             <div className='pagination-container'>
               <div className="pagination">
