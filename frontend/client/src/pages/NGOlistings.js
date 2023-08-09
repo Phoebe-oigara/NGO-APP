@@ -73,7 +73,9 @@ const NGOList = () => {
                   <p className='category'>Category: <span>{ngo.category}</span></p>
                   <p>{ngo.description}</p>
                   <p>{ngo.location}</p>
+
                   <img src={ngo.image} alt={ngo.name} className="ngo-image" />
+
                   <Link to={`/ngo/${ngo.id}`}>View Details</Link>
                 </li>
               ))}
@@ -100,4 +102,8 @@ const NGOList = () => {
   );
 };
 
+
 export default NGOList;
+
+export default NGOList;
+

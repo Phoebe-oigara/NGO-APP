@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import axios from "axios";
 
@@ -58,6 +59,57 @@ const NGORegister = () => {
         console.error("Error uploading image:", error);
       });
   }
+  
+import React, { useState } from 'react';
+import axios from 'axios';
+import { Image } from 'cloudinary-react'; // Import Cloudinary component
+import { Cloudinary } from 'cloudinary-core';
+
+const cloudinaryCore = new Cloudinary({ cloud_name: 'dqwwbbdid' });
+
+const NGORegister = ({ onSubmit }) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    ngoName: '',
+    email: '',
+    description: '',
+    location: '',
+    category: 'GBV', // Default value for the dropdown
+    image: '',
+    url: '',
+  });
+
+  const handleImageUpload = async (e) => {
+    try {
+      const file = e.target.files[0]; // Get the selected image file
+  
+      // Upload image to Cloudinary
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', 'NGO_CONNECT'); // Replace with your Cloudinary upload preset
+  
+      const response = await axios.post(
+        `https://api.cloudinary.com/v1_1/${cloudinaryCore.config().cloud_name}/upload`,
+        formData
+      );
+  
+      // Set the Cloudinary public ID (identifier) in the formData
+      setFormData((prevData) => ({
+        ...prevData,
+        image: response.data.public_id,
+      }));
+    } catch (error) {
+      console.error('Error uploading image:', error);
+    }
+  };
+  
+
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
 
   return (
     <div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link} from 'react-router-dom';
 import './home.css'
 
 const MyListComponent = () => {
@@ -43,7 +44,7 @@ const MyListComponent = () => {
                  authenticity.Explore our registered NGOs by clicking the "View All NGOs" button. 
                  Your support can make a difference. Find genuine NGOs you can trust.
                 Join us in creating a positive impact together with verified NGOs. Click below to browse.</p>
-                <button className="btn btn">View Verified NGOs</button>
+                <Link to='/ngolist' className="btn btn">View Verified NGOs</Link>
               </div>
             </div>
           )}
@@ -56,7 +57,7 @@ const MyListComponent = () => {
                 NGOs listed are thoroughly verified, ensuring your donations go to credible 
                 and impactful causes. When you visit our app, you can easily 
                 explore a wide range of voluntary positions available with these verified NGOs.</p>
-                <button className="btn btn">See where to donationate</button>
+                <Link to='/ngolist'className="btn btn">See where to donationate</Link>
               </div>
             </div>
           )}
@@ -67,7 +68,7 @@ const MyListComponent = () => {
                 <p className="card-text">Looking for voluntary positions? 
                 You've come to the right place! Browse through our verified NGOs and discover 
                 rewarding opportunities to make a positive impact. Click below to start your search.</p>
-                <button className="btn">Search for Voluntary Positions</button>
+                <Link to='/ngolist' className="btn">Search for Voluntary Positions</Link>
               </div>
             </div>
           )}
