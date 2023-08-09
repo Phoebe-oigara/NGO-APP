@@ -85,6 +85,13 @@
     margin-top: 60px;
 
 }
-  
+.footer{
+    background-color:  var(--devider);
+    margin-top: 20px;
+}
+.Home p{
+    width: 75%;
+}
+
 
   

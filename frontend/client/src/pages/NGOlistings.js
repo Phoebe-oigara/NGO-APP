@@ -89,6 +89,7 @@ const NGOList = () => {
               </div>
 
 
+
             <ul>
               {currentNgos.map(ngo => (
                 <li key={ngo.id} className='single-list-item'>
@@ -103,6 +104,7 @@ const NGOList = () => {
                 </li>
               ))}
             </ul>
+
 
 
             <div className='pagination-container'>

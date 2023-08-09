@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link} from 'react-router-dom';
-import './home.css'
+import { Link } from 'react-router-dom';
+import './home.css';
 
 const MyListComponent = () => {
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState('Item 1'); // Set 'Item 1' as the default
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
@@ -37,38 +37,35 @@ const MyListComponent = () => {
         </div>
         <div className="col-md-8">
           {selectedItem === 'Item 1' && (
-            <div className="card border-0 ">
+            <div className="card border-0">
               <div className="card-body">
                 <h2 className="card-title">Verified NGOs</h2>
-                <p className="card-text">Welcome to our app! All NGOs listed here are verified for
-                 authenticity.Explore our registered NGOs by clicking the "View All NGOs" button. 
-                 Your support can make a difference. Find genuine NGOs you can trust.
-                Join us in creating a positive impact together with verified NGOs. Click below to browse.</p>
-                <Link to='/ngolist' className="btn btn">View Verified NGOs</Link>
+                <p className="card-text">
+                  Welcome to our app! All NGOs listed here are verified for authenticity. Explore our registered NGOs by clicking the "View All NGOs" button. Your support can make a difference. Find genuine NGOs you can trust. Join us in creating a positive impact together with verified NGOs. Click below to browse.
+                </p>
+                <Link to="/ngolist" className="btn ">View Verified NGOs</Link>
               </div>
             </div>
           )}
           {selectedItem === 'Item 2' && (
-            <div className="card border-0 ">
+            <div className="card border-0">
               <div className="card-body">
                 <h2 className="card-title">How I Can Donate</h2>
-                <p className="card-text">Making a difference in the world is just 
-                a few steps away! At our app, we provide a platform where all 
-                NGOs listed are thoroughly verified, ensuring your donations go to credible 
-                and impactful causes. When you visit our app, you can easily 
-                explore a wide range of voluntary positions available with these verified NGOs.</p>
-                <Link to='/ngolist'className="btn btn">See where to donationate</Link>
+                <p className="card-text">
+                  Making a difference in the world is just a few steps away! At our app, we provide a platform where all NGOs listed are thoroughly verified, ensuring your donations go to credible and impactful causes. When you visit our app, you can easily explore a wide range of voluntary positions available with these verified NGOs.
+                </p>
+                <Link to="/ngolist" className="btn ">See where to donate</Link>
               </div>
             </div>
           )}
           {selectedItem === 'Item 3' && (
-            <div className="card border-0 ">
+            <div className="card border-0">
               <div className="card-body">
                 <h2 className="card-title">Search for Voluntary Positions</h2>
-                <p className="card-text">Looking for voluntary positions? 
-                You've come to the right place! Browse through our verified NGOs and discover 
-                rewarding opportunities to make a positive impact. Click below to start your search.</p>
-                <Link to='/ngolist' className="btn">Search for Voluntary Positions</Link>
+                <p className="card-text">
+                  Looking for voluntary positions? You've come to the right place! Browse through our verified NGOs and discover rewarding opportunities to make a positive impact. Click below to start your search.
+                </p>
+                <Link to="/ngolist" className="btn ">Search for Voluntary Positions</Link>
               </div>
             </div>
           )}

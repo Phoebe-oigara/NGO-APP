@@ -11,7 +11,7 @@ import Footer from '../components/footer';
 
     const LandingPage = () => {
       return (
-      <div>
+      <div className='Home'>
         <div className="nav">
           <NavBar />
         </div>
@@ -20,7 +20,11 @@ import Footer from '../components/footer';
           <MyListComponent />
         </div>
         <HomepageRegister />
+        <div className='footer'>
         <Footer />
+
+        </div>
+     
 
       </div>
     

@@ -4,8 +4,14 @@ import { useParams ,Link} from 'react-router-dom';
 import axios from 'axios';
 import '../styling/singlengo.css';
 
+
+import { useParams ,Link} from 'react-router-dom';
+import axios from 'axios';
+import '../styling/singlengo.css';
+
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+
 
 
 
@@ -32,6 +38,9 @@ const NGODetails = () => {
 
       const response = await axios.get(`/ngoconnect/ngo/${id}`, config); // Adjust the API endpoint
 
+
+      const response = await axios.get(`/ngoconnect/ngo/${id}`, config); // Adjust the API endpoint
+
       
       const response = await axios.get(`/ngoconnect/ngo/${id}`, config); // Adjust the API endpoint
 
@@ -39,6 +48,7 @@ const NGODetails = () => {
 
 
       console.log(response.data);
+
 
 
       setNgoData(response.data); // Assuming the response contains the NGO data

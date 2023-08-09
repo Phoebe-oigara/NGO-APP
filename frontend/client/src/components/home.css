@@ -16,7 +16,7 @@
 }
 
 .list-group-item.active{
-    background-color: var(--other);
+    background-color: var(--primary);
 }
 .btn{
     background-color: var(--primary);
@@ -33,4 +33,9 @@
     padding: 10px;
     margin-top: -20px;
     background-color: var(--devider);
+}
+.alert-info{
+
+   text-align: center;
+   
 }
