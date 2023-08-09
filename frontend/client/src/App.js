@@ -11,6 +11,7 @@ import NGOloginPage from './pages/NGOLoginPage';
 import NGOList from './pages/NGOlistings';
 import Dashboard from './pages/Dashboard';
 import NGODetails from './components/SingleNGO';
+import DonationPage from './pages/Donations';
 
 
 
@@ -35,7 +36,7 @@ function App() {
           <Route path="/ngolist" element={<NGOList/>} />
           <Route path="/dashbord" element={<Dashboard />} />
           <Route path="/ngoconnect/ngo/:id" element={<NGODetails />} />
-
+          <Route path="/donate" element={<DonationPage />} />
       
 
         </Routes>

@@ -1,5 +1,7 @@
 from flask_restful import Resource,abort,reqparse
 from Server.Models.donations import Donations
+from Server.Models.users import Users
+from Server.Models.Ngotb import NGO
 from flask_jwt_extended import  jwt_required
 from flask import request, jsonify
 from app import db
@@ -72,15 +74,33 @@ class DonationsResource(Resource):
 
     def post(self):
         try:
-            # Parse the request data and create a new Donation
+
             parser = reqparse.RequestParser()
-            parser.add_argument('user_id', type=int, required=True)
-            parser.add_argument('ngotb_id', type=int, required=True)
+            parser.add_argument('donorName', type=str, required=True)
+            parser.add_argument('organization', type=str, required=True)
             parser.add_argument('phone_number', type=str, required=True, help="Phone number must be a 10-digit number.")
             parser.add_argument('amount', type=int, required=True, help="Amount must be an integer.")
             data = parser.parse_args()
 
-            donation = Donations(**data)
+            # Retrieve user_id based on donor's name
+            user = Users.query.filter_by(fullname=data['donorName']).first()
+            if user is None:
+            
+                return {'message': 'Donor not found'}, 400
+            
+            # Retrieve ngotb_id based on organization name
+            organization = NGO.query.filter_by(name=data['organization']).first()
+            if organization is None:
+            
+                return {'message': 'Organization not found'}, 400
+
+            # Create and save the donation with correct foreign keys
+            donation = Donations(
+                user_id=user.id,
+                ngotb_id=organization.id,
+                phone_number=data['phone_number'],
+                amount=data['amount']
+        )
             db.session.add(donation)
             db.session.commit()
 
@@ -90,6 +110,7 @@ class DonationsResource(Resource):
             abort(400, message=str(e))
         except Exception as e:
             # Handle other errors (e.g., database errors) with a 500 Internal Server Error
+            print("Exception:", e)
             abort(500)
 
 class LineChartResource(Resource):
