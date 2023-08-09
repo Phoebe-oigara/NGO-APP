@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
+
 import { useParams ,Link} from 'react-router-dom';
 import axios from 'axios';
 import '../styling/singlengo.css';
+
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+
+
 
 const NGODetails = () => {
   const { id } = useParams();
@@ -23,7 +29,18 @@ const NGODetails = () => {
         },
       };
 
+
       const response = await axios.get(`/ngoconnect/ngo/${id}`, config); // Adjust the API endpoint
+
+      
+      const response = await axios.get(`/ngoconnect/ngo/${id}`, config); // Adjust the API endpoint
+
+      const response = await axios.get(`/ngoconnect/ngo/${id}`, config);
+
+
+      console.log(response.data);
+
+
       setNgoData(response.data); // Assuming the response contains the NGO data
       setIsLoading(false); // Loading finished
     } catch (error) {
