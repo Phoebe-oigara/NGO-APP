@@ -8,10 +8,11 @@
 
 
 #page-header {
-    height: 300px;
-    position: relative;
-    margin-bottom: 100px;
-    background-color: rgba(0, 0, 0, 0.7);
+  height: 300px;
+  position: relative;
+  margin-bottom: 100px;
+  background-color: #ccc;
+  background-size: cover;
 
   }
   
@@ -19,6 +20,7 @@
     padding-top: 150px;
     padding-bottom: 100px;
     text-align: center;
+    font-weight: bold;
  }
 li{
   display: block;
@@ -29,11 +31,13 @@ li{
 .pagination-container {
   display: flex;
   justify-content: center;
+  color: #000000;
   margin-top: 20px; /* Adjust as needed */
 }
 
 .pagination button {
   margin: 0 5px;
+  color: #000000;
   padding: 5px 10px;
   border: 1px solid #ccc;
   cursor: pointer;
@@ -41,7 +45,8 @@ li{
 }
 
 .pagination button:hover {
-  background-color: #f0f0f0;
+ 
+  background-color: var(--primary);
 }
 
 .single-list-item {
@@ -63,4 +68,26 @@ span{
   font-size: 16px;
   color: #636363;
   
+}
+.card-body{
+
+  margin: 0 !important;
+  padding: 20px;
+}
+.view-more{
+  border-radius: 4px;
+}
+
+.shortcuts{
+  padding: 0;
+  margin-top: 37px;
+}
+.shortcuts a{
+  display: block;
+  list-style: none;
+  text-align: left;
+  padding: 5px;
+  text-decoration: none;
+  color: #000000;
+
 }

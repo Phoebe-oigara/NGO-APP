@@ -25,7 +25,7 @@ class  ViewAllNgo(Resource):
         
 
 class RegisterNgo(Resource):
-    @jwt_required()
+    
     def post (self):
 
         data = request.json

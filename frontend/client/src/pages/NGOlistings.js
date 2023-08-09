@@ -66,44 +66,64 @@ const NGOList = () => {
       <div className='container'>
         <div className="row">
           <div className="col-md-8">
-            <ul>
-              {currentNgos.map(ngo => (
-                <li key={ngo.id} className='single-list-item'>
-                  <h3>{ngo.name}</h3>
-                  <p className='category'>Category: <span>{ngo.category}</span></p>
-                  <p>{ngo.description}</p>
-                  <p>{ngo.location}</p>
+          <div className="card-deck">
+                {currentNgos.map(ngo => (
+                  <div key={ngo.id} className='card mb-4 overflow-hidden' >
+                    <div className="row g-0">
+                      <div className="col-md-4">
+                        <img src={ngo.image} alt={ngo.name} className="card-img h-100" />
+                      </div>
+                      <div className="col-md-8">
+                        <div className="card-body bg-white">
+                          <h3 className="card-title">{ngo.name}</h3>
+                          <p className='category'>Field: <span>{ngo.category}</span></p>
+                          <p className="card-text category">Location: <span>{ngo.location}</span></p>
+                          <p className="card-text">{ngo.description.split(' ').slice(0, 25).join(' ')}...</p>
+                          <Link to={`/ngoconnect/ngo/${ngo.id}`} className="btn view-more">Know More</Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
 
-                  <img src={ngo.image} alt={ngo.name} className="ngo-image" />
-
-                  <Link to={`/ngo/${ngo.id}`}>View Details</Link>
-                </li>
-              ))}
-            </ul>
             <div className='pagination-container'>
               <div className="pagination">
                 {Array.from({ length: Math.ceil(ngos.length / itemsPerPage) }).map((_, index) => (
-                  <button key={index} onClick={() => paginate(index + 1)}>{index + 1}</button>
+                  <button key={index} onClick={() => paginate(index + 1)} className="btn btn-secondary">{index + 1}</button>
                 ))}
               </div>
             </div>
           </div>
           <div className="col-md-4">
             <h2>Categories</h2>
-            <select>
+            <select className="form-select">
               {categories.map((category, index) => (
                 <option key={index} value={category}>{category}</option>
               ))}
             </select>
+            
+            <ul className='shortcuts'>
+            <h2> Quick Links</h2>
+              <li >
+                <Link to={'/'}>Home </Link>
+                <Link>Register Ngo </Link>
+                <Link>FAQs </Link>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
   );
+  
 };
-
-
 export default NGOList;
 
-export default NGOList;
+
+
+
+
+
+
 

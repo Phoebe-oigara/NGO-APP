@@ -1,10 +1,11 @@
-
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import axios from "axios";
+import '../styling/registration.css';
 
 const NGORegister = () => {
  
-    const [name, setName] = useState("andrew");
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [description, setDescription] = useState("");
     const [location, setLocation] = useState("");
@@ -59,57 +60,6 @@ const NGORegister = () => {
         console.error("Error uploading image:", error);
       });
   }
-  
-import React, { useState } from 'react';
-import axios from 'axios';
-import { Image } from 'cloudinary-react'; // Import Cloudinary component
-import { Cloudinary } from 'cloudinary-core';
-
-const cloudinaryCore = new Cloudinary({ cloud_name: 'dqwwbbdid' });
-
-const NGORegister = ({ onSubmit }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    ngoName: '',
-    email: '',
-    description: '',
-    location: '',
-    category: 'GBV', // Default value for the dropdown
-    image: '',
-    url: '',
-  });
-
-  const handleImageUpload = async (e) => {
-    try {
-      const file = e.target.files[0]; // Get the selected image file
-  
-      // Upload image to Cloudinary
-      const formData = new FormData();
-      formData.append('file', file);
-      formData.append('upload_preset', 'NGO_CONNECT'); // Replace with your Cloudinary upload preset
-  
-      const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/${cloudinaryCore.config().cloud_name}/upload`,
-        formData
-      );
-  
-      // Set the Cloudinary public ID (identifier) in the formData
-      setFormData((prevData) => ({
-        ...prevData,
-        image: response.data.public_id,
-      }));
-    } catch (error) {
-      console.error('Error uploading image:', error);
-    }
-  };
-  
-
-  const [errorMessage, setErrorMessage] = useState('');
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
 
   return (
     <div>
@@ -125,6 +75,10 @@ const NGORegister = ({ onSubmit }) => {
           <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
           <form className="form-width">
           <h2>Ngo Registration</h2>
+
+          <p> Fill in the form bellow to enlist your NGO<br></br>
+              <span>All filed are mandatory to fill in.</span>
+            </p>
 
 
           {/* ... (existing input fields) */}
@@ -149,7 +103,9 @@ const NGORegister = ({ onSubmit }) => {
             />
           </div>
           <div className="input-container">
+          <p className='guide'> Give a description of what your organization</p>
           <input
+          id="text"
           type="text"
           name="description"
           placeholder="Description"
@@ -169,11 +125,13 @@ const NGORegister = ({ onSubmit }) => {
           />
           </div>
           <div className="input-container">
+          <p className='guide'> Choose wgich field  your Ngo helps in</p>
           <select
           name="category"
           value={category}
           onChange={(e)=>setCategory(e.target.value)}
           required
+          className='selector'
           >
           <option value="">Choose Category</option>
           <option value="GBV">GBV</option>
@@ -199,7 +157,8 @@ const NGORegister = ({ onSubmit }) => {
             <input type="file" name="file" onChange={handleImage} />
 
           <div className="input-container">
-          <button onClick={handleApi} type="submit" className="btn btn-primary btn-block button-width">Register</button>
+          <button onClick={handleApi} type="submit" className="btn btn-block button-width" id="spacing">Register</button>
+          <Link to='/' className="btn btn" id="reg-button">Home</Link>
           </div>
 
           
