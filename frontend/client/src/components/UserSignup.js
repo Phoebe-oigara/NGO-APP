@@ -55,19 +55,56 @@ const UserSignup = ({ onSubmit }) => {
   const [user, setUser] = useState({})
 
 
-  function handleCallbackResponse(response){
+  async function handleCallbackResponse(response){
     console.log("Encoded JWT ID token: " + response.credential);
     var userObject = jwt_decode(response.credential);
     console.log(userObject);
     setUser(userObject);
     document.getElementById("signInDiv").hidden = true;
-    }
+    
 
-    function handleSignOut(event) {
-      setUser({});
-      document.getElementById("signInDiv").hidden = false;
 
-    }
+  // Send a push request to your API
+  await sendPushRequestToAPI(userObject);// Function to send the push request
+}
+
+
+  async function sendPushRequestToAPI(userObject) {
+    try{
+    // Replace 'YOUR_API_URL' with the actual URL of your API
+      const apiUrl = '/ngoconnect/addusers';
+
+
+  // Define the data to send in the push request
+  const requestData = {
+    user: userObject,
+    // Any other data you want to send
+    };
+
+  // Make the push request using the fetch API
+  const response = await fetch(apiUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      // Add any other headers your API requires
+    },
+    body: JSON.stringify(requestData),
+  });
+
+  // Handle the API response as needed
+  console.log('API Response:', response);
+  // You can add more logic here to handle different response scenarios
+  } catch (error) {
+  // Handle errors that occurred during the push request
+  console.error('Error sending push request:', error);
+  }
+}
+
+
+
+
+
+   
   
     useEffect(() => {
       /* global google */
@@ -82,9 +119,13 @@ const UserSignup = ({ onSubmit }) => {
         
       );
       google.accounts.id.prompt();
+
       
-  
-      }, []);
+    // eslint-disable-next-line
+    },[]);
+
+
+
       // If we have no user: sign in button
       // If we have no user: show the login button
 
@@ -92,6 +133,8 @@ const UserSignup = ({ onSubmit }) => {
 
 
   return (
+
+
     
     <div className="container-fluid h-100" id="signuppage">
     
@@ -156,9 +199,7 @@ const UserSignup = ({ onSubmit }) => {
           </button>
           <div className="Google">
             <div id="signInDiv"></div>
-            { Object.keys(user).length !== 0 &&
-              <button onclick={ (e) => handleSignOut(e)}> Sign Out </button>
-            }
+            
             
             { user &&
               <div>
@@ -184,4 +225,7 @@ const UserSignup = ({ onSubmit }) => {
   );
 };
 
+
 export default UserSignup;
+
+
