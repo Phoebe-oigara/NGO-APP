@@ -1,4 +1,6 @@
+import re
 from flask_restful import Resource
+from sqlalchemy.exc import IntegrityError
 from flask import request
 from Server.Models.Ngotb import NGO
 from app import db
@@ -38,6 +40,11 @@ class RegisterNgo(Resource):
         location = data.get('location')
         url = data.get('url')
 
+        existing_ngo = NGO.query.filter_by(email=email).first()
+
+        if existing_ngo:
+            return {"message": "The provided email is already registered."}, 400 
+
         new_ngo = NGO(
             name=name,
             description=description,
@@ -47,14 +54,15 @@ class RegisterNgo(Resource):
             location=location,
             url=url
         )
-
-        db.session.add(new_ngo)
-        user = current_user
-        user.assign_ngo_admin_role()
-        db.session.commit()
-
-        return {"message": "NGO registered successfully and user status updated to admin."}, 201
-
+        try:
+            db.session.add(new_ngo)
+            user = current_user
+            user.assign_ngo_admin_role()
+            db.session.commit()
+            return {"message": "NGO registered successfully and user status updated to admin."}, 201
+        except Exception as e:
+            db.session.rollback()  # Roll back the transaction
+            return {"message": "An error occurred while processing your request."}, 500 
 
 class ViewNgoById(Resource):
     @jwt_required()

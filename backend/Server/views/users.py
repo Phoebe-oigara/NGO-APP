@@ -48,30 +48,31 @@ class GetAllUsers(Resource):
         return {'Users': users_list}, 200
 
 class AddUser(Resource):
-    
     def post(self):
-        data = request.get_json()
-        fullname = data.get('fullname')
-        email = data.get('email')
-        password = data.get('password')
-        roles = data.get('roles', ['user'])
-     
+        try:
+            data = request.get_json()
+            fullname = data.get('fullname')
+            email = data.get('email')
+            password = data.get('password')
+            roles = data.get('roles', ['user'])
+            
+            if not fullname or not email or not password:
+                return {'error': 'Invalid name, email, or password.'}, 400
 
-        if not fullname or not email or not password:
-            return {'error': 'Invalid name,email or Password.'}, 400
+            new_user = Users(fullname=fullname, email=email, password=password)
 
-        new_user = Users(fullname=fullname, email=email, password=password)
+            for role_slug in roles:
+                role = Role.query.filter_by(slug=role_slug).first()
+                if role:
+                    new_user.roles.append(role)
+            
+            db.session.add(new_user)
+            db.session.commit()
+            
+            return {'message': 'New user created successfully'}, 201
+        except Exception as e:
+            return {"error": "An error occurred while processing your request.", "details": str(e)}, 500
 
-        print("Roles before assignment:", new_user.roles)
-
-        for role_slug in roles:
-            role = Role.query.filter_by(slug=role_slug).first()
-            if role:
-                new_user.roles.append(role)
-        db.session.add(new_user)
-        db.session.commit()
-        
-        return {'message': 'New user created successfully'}, 201
 
     
    
