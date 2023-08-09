@@ -30,10 +30,11 @@ class RegisterNgo(Resource):
 
         data = request.json
 
+        print("Received data:", data)
         name = data.get('name')
         description = data.get('description')
         category = data.get('category')
-        image = data.get('image')
+        image_public_id = data.get('image')
         email = data.get('email')
         location = data.get('location')
         url = data.get('url')
@@ -42,16 +43,19 @@ class RegisterNgo(Resource):
             name=name,
             description=description,
             category=category,
-            image=image,
+            image=image_public_id,
             email=email,
             location=location,
             url=url
         )
 
-        db.session.add(new_ngo)
-        user = current_user
-        user.assign_ngo_admin_role()
-        db.session.commit()
+        try:
+            db.session.add(new_ngo)
+            db.session.commit()
+            print("NGO registered successfully")
+        except Exception as e:
+            db.session.rollback()
+            print("Error while registering NGO:", e)
 
         return {"message": "NGO registered successfully and user status updated to admin."}, 201
 
