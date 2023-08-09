@@ -14,7 +14,6 @@ import NGODetails from './components/SingleNGO';
 
 
 
-
 // styling pages
 
 

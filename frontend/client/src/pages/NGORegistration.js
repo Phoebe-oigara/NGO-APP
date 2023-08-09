@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import axios from "axios";
+import '../styling/registration.css';
 
 const NGORegister = () => {
  
-    const [name, setName] = useState("andrew");
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [description, setDescription] = useState("");
     const [location, setLocation] = useState("");
@@ -74,6 +76,10 @@ const NGORegister = () => {
           <form className="form-width">
           <h2>Ngo Registration</h2>
 
+          <p> Fill in the form bellow to enlist your NGO<br></br>
+              <span>All filed are mandatory to fill in.</span>
+            </p>
+
 
           {/* ... (existing input fields) */}
           <div className="input-container">
@@ -97,7 +103,9 @@ const NGORegister = () => {
             />
           </div>
           <div className="input-container">
+          <p className='guide'> Give a description of what your organization</p>
           <input
+          id="text"
           type="text"
           name="description"
           placeholder="Description"
@@ -117,11 +125,13 @@ const NGORegister = () => {
           />
           </div>
           <div className="input-container">
+          <p className='guide'> Choose wgich field  your Ngo helps in</p>
           <select
           name="category"
           value={category}
           onChange={(e)=>setCategory(e.target.value)}
           required
+          className='selector'
           >
           <option value="">Choose Category</option>
           <option value="GBV">GBV</option>
@@ -147,7 +157,8 @@ const NGORegister = () => {
             <input type="file" name="file" onChange={handleImage} />
 
           <div className="input-container">
-          <button onClick={handleApi} type="submit" className="btn btn-primary btn-block button-width">Register</button>
+          <button onClick={handleApi} type="submit" className="btn btn-block button-width" id="spacing">Register</button>
+          <Link to='/' className="btn btn" id="reg-button">Home</Link>
           </div>
 
           

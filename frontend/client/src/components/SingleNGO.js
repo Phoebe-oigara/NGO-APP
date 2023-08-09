@@ -20,6 +20,9 @@ const NGODetails = () => {
         },
       };
 
+      
+      const response = await axios.get(`/ngoconnect/ngo/${id}`, config); // Adjust the API endpoint
+
       const response = await axios.get(`/ngoconnect/ngo/${id}`, config);
 
 
