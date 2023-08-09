@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import { Link } from 'react-router-dom';
 import { useEffect} from 'react';
 import jwt_decode from "jwt-decode"
 
@@ -99,13 +100,6 @@ const UserSignup = ({ onSubmit }) => {
   console.error('Error sending push request:', error);
   }
 }
-
-
-
-
-
-   
-  
     useEffect(() => {
       /* global google */
       google.accounts.id.initialize({
@@ -124,28 +118,15 @@ const UserSignup = ({ onSubmit }) => {
     // eslint-disable-next-line
     },[]);
 
-
-
       // If we have no user: sign in button
       // If we have no user: show the login button
-
-
-
-
-  return (
-
-
-    
+  return (  
     <div className="container-fluid h-100" id="signuppage">
-    
-
-    <div className="row h-100">
-          
+    <div className="row h-100">         
       <div className="col-12 col-md-6 bg-image-container d-none d-md-block">
         <img src="/images/login.jpg" alt="signup " className="img-fluid" />
       </div>
    
-
       <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
       <form onSubmit={handleSubmit} className='form-width'>
         <div className="mb-3">
@@ -194,11 +175,15 @@ const UserSignup = ({ onSubmit }) => {
           />
         </div>
         <div className="d-grid gap-2">
-          <button type="submit" className="btn login" >
+          <button type="submit" className="btn" >
             Create Account
           </button>
+
+          <Link to={'/userlogin'} className="btn"  > Login </Link>
           <div className="Google">
             <div id="signInDiv"></div>
+
+            
             
             
             { user &&

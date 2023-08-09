@@ -54,7 +54,7 @@ const MyListComponent = () => {
                 <p className="card-text">
                   Making a difference in the world is just a few steps away! At our app, we provide a platform where all NGOs listed are thoroughly verified, ensuring your donations go to credible and impactful causes. When you visit our app, you can easily explore a wide range of voluntary positions available with these verified NGOs.
                 </p>
-                <Link to="/ngolist" className="btn ">See where to donate</Link>
+                <Link to="/donate" className="btn ">See how to donate</Link>
               </div>
             </div>
           )}

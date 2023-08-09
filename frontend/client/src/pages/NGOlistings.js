@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import '../styling/ngolisting.css';
 
+
 const NGOList = () => {
   const [ngos, setNgos] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -58,7 +59,7 @@ const NGOList = () => {
 
   return (
     <div>
-      <div className='row' id="page-header">
+      <div className='row' id="page-header" >
         <div className='col'>
           <h1 className='title'>List of NGOs</h1>
         </div>
@@ -87,9 +88,6 @@ const NGOList = () => {
                   </div>
                 ))}
               </div>
-
-
-
             <ul>
               {currentNgos.map(ngo => (
                 <li key={ngo.id} className='single-list-item'>
