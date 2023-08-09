@@ -41,7 +41,7 @@ const LoginForm = () => {
       setPassword('');
       setError('');
 
-      navigate('/ngolist');
+      navigate('/');
     } catch (error) {
       setError(error.message);
     }
@@ -51,7 +51,9 @@ const LoginForm = () => {
     <div className="container-fluid h-100" id="signuppage">
       <div className="row h-100">
         <div className="col-12 col-md-6 bg-image-container d-none d-md-block">
+
           <img src="/images/loginpage.jpg" alt="userlogin" className="img-fluid" />
+
         </div>
         <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
           <form onSubmit={handleSubmit} className='form-width'>

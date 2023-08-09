@@ -9,7 +9,7 @@ const HomepageHeader = () => {
   
 
   return (
-    <div className="container text-left">
+    <div className="container text-left" id="header">
       <div className="row">
         <div className="col" id="hero-text">
           <h1 className="heading">We connect</h1>

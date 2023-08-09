@@ -1,0 +1,19 @@
+.selector {
+  background-color: white;
+  padding: 8px;
+  margin-top: 5px;
+  width: 100%;
+  border-radius: 6px;
+}
+#reg-button{
+    margin-top: 7px;
+    width: 100%;
+}
+#text{
+    padding-bottom: 50px;
+}
+.guide{
+    margin-top: 10px;
+    margin-bottom: 0px;
+    opacity: 60%;
+}

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 
 import { useEffect} from 'react';
@@ -213,13 +212,7 @@ const UserSignup = ({ onSubmit }) => {
 
           </div>
         </div>
-       
-          
-        
-        
-        
 
-        
       </form>
      
 
@@ -231,7 +224,6 @@ const UserSignup = ({ onSubmit }) => {
   
   );
 };
-
 
 
 export default UserSignup;
