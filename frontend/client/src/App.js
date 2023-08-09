@@ -35,7 +35,6 @@ function App() {
           <Route path="/ngolist" element={<NGOList/>} />
           <Route path="/dashbord" element={<Dashboard />} />
           <Route path="/ngoconnect/ngo/:id" element={<NGODetails />} />
-
       
 
         </Routes>
