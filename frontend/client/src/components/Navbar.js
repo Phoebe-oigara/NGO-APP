@@ -24,28 +24,27 @@ const NavBar = () => {
   const navbarClass = scrolling ? "scrolled" : "";
 
   return (
-    <nav className={`site-title ${navbarClass}`}>
-      <Link to="/" className="site-title">
-        NGO CONNECTS
-      </Link>
-      <ul className="nav-list">
-        <li className="nav-item">
-          <Link to="/signup">Signup</Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/Userlogin">Login</Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/register">NGORegister</Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/ngologin">Ngologin</Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/ngolist">Ngolist</Link>
-        </li>
-      </ul>
-    </nav>
+    <div className="custom-navbar">
+      <nav className={`site-title ${navbarClass}`}  >
+        <Link to="/" className="site-title">
+        <img src="/images/pagelogo.jpg" alt="userlogin" className="img-fluid" />
+        </Link>
+        <ul className="nav-list">
+          <li className="nav-item">
+            <Link to="/">Home</Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/">About Us</Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/">FAQs</Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/ngolist">Listed Ngos</Link>
+          </li>
+        </ul>
+      </nav>
+    </div>
   );
 };
 
