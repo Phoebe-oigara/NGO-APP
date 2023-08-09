@@ -37,7 +37,7 @@ function App() {
           <Route path="/dashbord" element={<Dashboard />} />
           <Route path="/ngoconnect/ngo/:id" element={<NGODetails />} />
           <Route path="/donate" element={<DonationPage />} />
-      
+
 
         </Routes>
       </div>

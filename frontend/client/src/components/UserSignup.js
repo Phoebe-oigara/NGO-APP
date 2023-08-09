@@ -194,7 +194,7 @@ const UserSignup = ({ onSubmit }) => {
           />
         </div>
         <div className="d-grid gap-2">
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn login" >
             Create Account
           </button>
           <div className="Google">

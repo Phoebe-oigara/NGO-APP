@@ -4,9 +4,12 @@ from Server.Models.users import Users
 from Server.Models.Ngotb import NGO
 from flask_jwt_extended import  jwt_required
 from flask import request, jsonify
-from app import db
+from app import db,consumer_key,consumer_secret,base_url
 from sqlalchemy import func
-
+from requests.auth import HTTPBasicAuth
+import requests
+import base64
+from datetime import datetime
 
 
 class DonationResource(Resource):
@@ -136,4 +139,101 @@ class LineChartResource(Resource):
             }
 
             return jsonify(chart_data)
-   
+
+# ... (Previous code remains the same)
+class AccessToken(Resource):
+    def get(self):
+        return self._access_token()
+
+    @staticmethod
+    def _access_token():
+        endpoint = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'
+        r = requests.get(endpoint, auth=HTTPBasicAuth(consumer_key, consumer_secret))
+        data = r.json()
+        return data['access_token']
+
+class RegisterURLs(Resource):
+    def get(self):
+        access_token = AccessToken._access_token()
+        my_endpoint = base_url + "c2b/"
+        headers = {"Authorization": "Bearer %s" % access_token}
+        r_data = {
+            # "ShortCode": "600383",
+            "ResponseType": "Completed",
+            "ConfirmationURL": my_endpoint + 'con',
+            "ValidationURL": my_endpoint + 'val'
+        }
+        
+
+        response = requests.post(endpoint, json=r_data, headers=headers)
+        return response.json()
+
+class SimulatePayment(Resource):
+    def get(self):
+        access_token = AccessToken._access_token()
+        headers = {"Authorization": "Bearer %s" % access_token}
+        endpoint = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate'
+        data_s = {
+            "Amount": 100,
+            # "ShortCode": "600383",
+            "BillRefNumber": "test",
+            "CommandID": "CustomerPayBillOnline",
+            "Msisdn": "254748003189"
+        }
+        res = requests.post(endpoint, json=data_s, headers=headers)
+        return res.json()
+
+
+class MakeB2CPayment(Resource):
+    def get(self):
+        access_token = AccessToken._access_token()
+        headers = {"Authorization": "Bearer %s" % access_token}
+        endpoint = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest'
+        my_endpoint = base_url + "/b2c/"
+        data = {
+            "InitiatorName": "apitest342",
+            "SecurityCredential": "HohhqI2NsSrioX1z0THsOEaf1Ddpjh7oBmJi/U5ayOEOtJqnqCmc5pO8GWMXYg8ADlTiCCk/iWZIjpp81bOsb6R27Djy11Y5pqyMMVp8P0jVBCV0wLV3OmeYvGH3FlVhuSDSg48jjS8ekGqTGb1Fw1HS2rTl7iq2su06FQu10H27sIh+iOSBKpLD2mgDKJOpwzKTmvvk2fKB/r6fqL/ibig4HzsVFmpNm06AUPmR5t67EIduM73j3LhrltjRyOWowcEAlcOTwSkzMdGxnIKR26aBdRv8frIdiZr1LCo8enOC7+aj+qhDvRzqpaTpLugbNik5co5wIWmqXVbpqjJohg==",
+            "CommandID": "BusinessPayment",
+            "Amount": "200",
+            "PartyA": "254748003189",
+            "PartyB": "254748003189",
+            "Remarks": "Pay Salary",
+            "QueueTimeOutURL": my_endpoint + "timeout",
+            "ResultURL": my_endpoint + "result",
+            "Occasion": "Donation"
+        }
+        res = requests.post(endpoint, json=data, headers=headers)
+        return res.json()
+
+class InitiateSTK(Resource):
+    def get(self):
+        access_token = AccessToken._access_token()
+        headers = {"Authorization": "Bearer %s" % access_token}
+        endpoint = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest'
+        my_endpoint = base_url + "/lnmo"
+        Timestamp = datetime.now()
+        times = Timestamp.strftime("%Y%m%d%H%M%S")
+        password = "174379" + "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919" + times
+        datapass = base64.b64encode(password.encode('utf-8'))
+
+        data = {
+            "BusinessShortCode": "174379",
+            "Password": datapass.decode('utf-8'),
+            "Timestamp": times,
+            "TransactionType": "CustomerPayBillOnline",
+            "PartyA": "254748003189",
+            "PartyB": "174379",
+            "PhoneNumber": "254748003189",
+            "CallBackURL": my_endpoint,
+            "AccountReference": "NGOconnect",
+            "TransactionDesc": "Donation",
+            "Amount": 2
+        }
+
+        res = requests.post(endpoint, json=data, headers=headers)
+        return res.json()
+
+# Create classes for /b2c/result, /b2c/timeout, /c2b/val, and /c2b/con similarly.
+
+
+
