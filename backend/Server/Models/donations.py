@@ -19,7 +19,7 @@ class Donations(db.Model):
     @validates('phone_number')
     def validate_phone_number(self, key, phone_number):
         # Custom validation for phone_number attribute
-        if not phone_number or not phone_number.isdigit() or len(phone_number) != 10:
+        if not phone_number or not phone_number.isdigit() or len(phone_number) != 9:
             raise ValueError("Invalid phone number format. Phone number must be a 10-digit number.")
         return phone_number
     

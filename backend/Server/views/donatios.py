@@ -164,6 +164,7 @@ class RegisterURLs(Resource):
             "ValidationURL": my_endpoint + 'val'
         }
         
+        endpoint = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl'
 
         response = requests.post(endpoint, json=r_data, headers=headers)
         return response.json()
@@ -216,24 +217,25 @@ class InitiateSTK(Resource):
         password = "174379" + "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919" + times
         datapass = base64.b64encode(password.encode('utf-8'))
 
+
+        phone_number = request.args.get('phone_number')
+        amount = request.args.get('amount')
+        
         data = {
             "BusinessShortCode": "174379",
             "Password": datapass.decode('utf-8'),
             "Timestamp": times,
             "TransactionType": "CustomerPayBillOnline",
-            "PartyA": "254748003189",
+            "PartyA": "254" + phone_number,
             "PartyB": "174379",
-            "PhoneNumber": "254748003189",
+            "PhoneNumber": "254" + phone_number,
             "CallBackURL": my_endpoint,
             "AccountReference": "NGOconnect",
             "TransactionDesc": "Donation",
-            "Amount": 2
+            "Amount": amount,
         }
 
         res = requests.post(endpoint, json=data, headers=headers)
         return res.json()
 
 # Create classes for /b2c/result, /b2c/timeout, /c2b/val, and /c2b/con similarly.
-
-
-

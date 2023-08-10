@@ -61,9 +61,13 @@ const NGOList = () => {
     <div>
       <div className='row' id="page-header" >
         <div className='col'>
-          <h1 className='title'>List of NGOs</h1>
+          <h1 className='title'>Discover A wid range <br></br>of listed and verified Ngos</h1>
+        </div>
+        <div className='col'>
+        <img src="/images/ngo-listings-removebg-preview.png" alt="login ngoconnect"  />
         </div>
       </div>
+
       <div className='container'>
         <div className="row">
           <div className="col-md-8">
@@ -88,23 +92,6 @@ const NGOList = () => {
                   </div>
                 ))}
               </div>
-            <ul>
-              {currentNgos.map(ngo => (
-                <li key={ngo.id} className='single-list-item'>
-                  <h3>{ngo.name}</h3>
-                  <p className='category'>Category: <span>{ngo.category}</span></p>
-                  <p>{ngo.description}</p>
-                  <p>{ngo.location}</p>
-
-                  <img src={ngo.image} alt={ngo.name} className="ngo-image" />
-
-                  <Link to={`/ngoconnect/ngo/${ngo.id}`}>View Details</Link>
-                </li>
-              ))}
-            </ul>
-
-
-
             <div className='pagination-container'>
               <div className="pagination">
                 {Array.from({ length: Math.ceil(ngos.length / itemsPerPage) }).map((_, index) => (

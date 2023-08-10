@@ -1,8 +1,13 @@
 .donation-form {
 
-    width: 80% ;
+    width: 70% ;
 }
 .size{
     width: 100%;
     margin-top: 10px;
+}
+.guiode{
+    color: green;
+    opacity: 50%;
+    margin-top: 20px;
 }
