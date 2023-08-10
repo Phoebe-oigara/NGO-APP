@@ -202,7 +202,7 @@ const UserSignup = ({ onSubmit }) => {
             
             { user &&
               <div>
-                <img src={user.picture} alt="userprofile"/>
+                <img src={user.picture} alt="userimage"/>
                 <h3>{user.name}</h3>
               </div>
 
