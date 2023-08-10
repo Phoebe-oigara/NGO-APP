@@ -16,7 +16,9 @@ const Footer = () => {
             Our platform is designed to be your guide in 
             discovering the ideal NGO and forging meaningful 
             connections with like-minded individuals. 
+            
           </p>
+          <p>@2023 Ngoconnet</p>
         </div>
         <div className="col-md-4">
           <ul className="quick">
@@ -29,8 +31,9 @@ const Footer = () => {
           </ul>
         </div>
         <div className="col-md-4">
-          <h3>Contact support</h3>
+          <h3>Support</h3>
           <p>call : 0712345678</p>
+          <p>email : info@ngoconnect.com</p>
         </div>
       </div>
     </div>

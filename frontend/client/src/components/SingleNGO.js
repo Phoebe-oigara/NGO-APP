@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams ,Link} from 'react-router-dom';
 import axios from 'axios';
 import '../styling/singlengo.css';
+import Footer from './footer';
 
 
 const NGODetails = () => {
@@ -103,6 +104,10 @@ const NGODetails = () => {
           </div>
         </div>
       </div>
+      <div className="footer">
+  
+      </div>
+     
     </div>
   );
 };

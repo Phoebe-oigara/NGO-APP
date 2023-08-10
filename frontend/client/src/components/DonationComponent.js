@@ -98,8 +98,8 @@ const DonationForm = () => {
  <div className="donation-form">
       <h3>Donate Now</h3>
       <p>
-      Input your account username under the donar name
-      and the name of the organizationas it appers in the site.
+      Input your account username under the  name Donor's
+      and the name of the organization as it appears in the site.
       </p>
 
   

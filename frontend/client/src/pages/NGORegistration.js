@@ -12,6 +12,7 @@ const NGORegister = () => {
     const [category, setCategory] = useState("");
     const [image, setImage] = useState("");
     const [url, setUrl] = useState("");
+    const [registrationSuccess, setRegistrationSuccess] = useState(false);
   
 
   function handleImage(e) {
@@ -50,6 +51,7 @@ const NGORegister = () => {
           })
           .then((response) => {
             console.log("register success, data stored:", response.data.message);
+            setRegistrationSuccess(true);
           })
           .catch((error) => {
             console.error("Error storing image data:", error);
@@ -156,6 +158,13 @@ const NGORegister = () => {
           
             <input type="file" name="file" onChange={handleImage} />
 
+             {/* Conditionally render success message */}
+        {registrationSuccess && (
+          <div className="success-message">
+            NGO registered successfully! Thank you for your registration.
+          </div>
+        )}
+
           <div className="input-container">
           <button onClick={handleApi} type="submit" className="btn btn-block button-width" id="spacing">Register</button>
           <Link to='/' className="btn btn" id="reg-button">Home</Link>
@@ -163,7 +172,9 @@ const NGORegister = () => {
 
           
           </form>
+           
           </div>
+         
           </div>
           </div>
                 </div>
