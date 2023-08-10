@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import '../styling/Loginpage.css';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -59,7 +60,7 @@ const LoginForm = () => {
           <form onSubmit={handleSubmit} className='form-width'>
             <h1 className="mb-4">User Login</h1>
             <div className="mb-3">
-              <label htmlFor="email">Email:</label>
+        
               <input
                 type="email"
                 id="email"
@@ -70,7 +71,7 @@ const LoginForm = () => {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="password">Password:</label>
+            
               <input
                 type="password"
                 id="password"
@@ -80,9 +81,12 @@ const LoginForm = () => {
                 required
               />
             </div>
-            <button type="submit" className="btn btn-primary btn-block">
+            <button type="submit" className="btn btn-block"  id="login-btn">
               Login
             </button>
+
+            <Link to={'/signup'} className="btn btn-block"  id="login-btn" > Sign Up</Link>
+
             {error && <p>{error}</p>}
           </form>
         </div>

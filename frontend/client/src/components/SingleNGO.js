@@ -5,16 +5,6 @@ import axios from 'axios';
 import '../styling/singlengo.css';
 
 
-import { useParams ,Link} from 'react-router-dom';
-import axios from 'axios';
-import '../styling/singlengo.css';
-
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
-
-
-
-
 const NGODetails = () => {
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
@@ -37,14 +27,6 @@ const NGODetails = () => {
 
 
       const response = await axios.get(`/ngoconnect/ngo/${id}`, config); // Adjust the API endpoint
-
-
-      const response = await axios.get(`/ngoconnect/ngo/${id}`, config); // Adjust the API endpoint
-
-      
-      const response = await axios.get(`/ngoconnect/ngo/${id}`, config); // Adjust the API endpoint
-
-      const response = await axios.get(`/ngoconnect/ngo/${id}`, config);
 
 
       console.log(response.data);
@@ -90,7 +72,12 @@ const NGODetails = () => {
                 Category: <span>{ngoData.category} </span> |  Location: <span>{ngoData.location} </span>| Email: <span>{ngoData.email}</span>
               </p>
               <p>Description: {ngoData.description}</p>
-              <button  onclick="window.location.href = '{{ngoData.url}}';"  className="btn ">Visit NGO Website</button>
+              <div>
+              <button  onclick="window.location.href = '{{ngoData.url}}';"  className="btn ">Visit Website</button>  <Link  to={'/donate'}className="btn" > Donate </Link>  <Link className="btn"> Volunteer </Link>
+
+
+              </div>
+              
               <div className='review'>
                 <h3> Leave a review</h3>
               <form>
@@ -107,9 +94,9 @@ const NGODetails = () => {
             <h2> Quick Links</h2>
               <li >
                 <Link to={'/'}>Home </Link>
-                <Link>Register Ngo </Link>
+                <Link to={'/register'}>Register Ngo </Link>
                 <Link>FAQs </Link>
-                <Link to={'/ngolist'}> FAQs </Link>
+                <Link to={'/ngolist'}> Other Ngos </Link>
               </li>
             </ul>
 

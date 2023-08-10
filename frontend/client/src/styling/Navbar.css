@@ -24,7 +24,8 @@
 
 .custom-navbar .site-title img {
   width: 15%; /* Image width set to 40% */
-  margin-right: 117px; /* Adding space between logo and text */
+ /* Adding space between logo and text */
+
 }
 
 .custom-navbar ul {
@@ -41,17 +42,16 @@
 .custom-navbar li a {
   text-decoration: none;
   color: #333;
-  padding: 8px 12px;
   border-radius: 5px;
   transition: background-color 0.3s ease; /* Adding transition effect */
 }
 
 .custom-navbar li a:hover {
-  background-color: #f0f0f0; /* Lighter color on hover */
+  color: #d87927; /* Lighter color on hover */
 }
 
 .custom-navbar li a.active {
-  color: #ff0000;
+  color: #d87927;
 }
 
 .content {

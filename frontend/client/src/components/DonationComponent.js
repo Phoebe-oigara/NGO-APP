@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import '../styling/donation.css';
 
 const DonationForm = () => {
   const [donorName, setDonorName] = useState('');
@@ -43,9 +45,24 @@ const DonationForm = () => {
   };
 
   return (
-    <div className="donation-form">
-      <h3>Donate Now</h3>
 
+
+<div className="container-fluid h-100" id="signuppage">
+<div className="row h-100">
+  <div className="col-12 col-md-6 bg-image-container d-none d-md-block">
+    <img src="/images/loginpage.jpg" alt="login ngoconnect" className="img-fluid" />
+  </div>
+
+  <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
+
+ <div className="donation-form">
+      <h3>Donate Now</h3>
+      <p>
+      Input your account username under the donar name
+      and the name of the organizationas it appers in the site.
+      </p>
+
+  
       <input
         type="text"
         placeholder="Donor's name"
@@ -73,9 +90,15 @@ const DonationForm = () => {
         value={donationAmount}
         onChange={(e) => setDonationAmount(e.target.value)}
       />
-      <button onClick={handleDonate}>Donate</button>
+      <button onClick={handleDonate}  className="btn btn-block size" >Donate</button>
+      <Link className="btn btn-block size" to={'/ngolist'}> See Ngo Listings</Link>
     </div>
+  </div>
+</div>
+</div>
+   
   );
 };
 
 export default DonationForm;
+
