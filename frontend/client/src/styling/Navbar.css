@@ -20,7 +20,10 @@
   color: #333;
   display: flex;
   align-items: center;
+
+  padding-right: 105px;
 }
+
 
 .custom-navbar .site-title img {
   width: 15%; /* Image width set to 40% */

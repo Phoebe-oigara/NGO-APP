@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-
 import { Link } from 'react-router-dom';
 import { useEffect} from 'react';
 import jwt_decode from "jwt-decode"
-
 import axios from 'axios';
+import '../styling/SignupPage.css';
 
 
 const UserSignup = ({ onSubmit }) => {
@@ -15,6 +14,9 @@ const UserSignup = ({ onSubmit }) => {
     confirmPassword: '',
   });
 
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
@@ -24,17 +26,20 @@ const UserSignup = ({ onSubmit }) => {
     e.preventDefault();
   
     if (formData.password !== formData.confirmPassword) {
-      console.error('Passwords do not match');
+      setErrorMessage('Passwords do not match');
       return;
     }
   
     try {
+      // eslint-disable-next-line
       const response = await axios.post('/ngoconnect/addusers', formData, {
         headers: {
-          'Content-Type': 'application/json' // Set the content type to JSON
+          'Content-Type': 'application/json'
         }
       });
-      console.log(response.data);
+  
+      setSuccessMessage('Account successfully created');
+      setErrorMessage('');
   
       setFormData({
         fullname: '',
@@ -42,17 +47,14 @@ const UserSignup = ({ onSubmit }) => {
         password: '',
         confirmPassword: '',
       });
+
+      onSubmit(formData);
+  
     } catch (error) {
-      console.error('Error adding user:', error);
-      // Handle error cases here
+      setErrorMessage('Error adding user: Password must contain atleast 8 characters,an uppercase and a digit!');
+      setSuccessMessage('');
     }
-  
-    onSubmit(formData);
-
-  
   };
-  
-
   const [user, setUser] = useState({})
 
 
@@ -100,6 +102,13 @@ const UserSignup = ({ onSubmit }) => {
   console.error('Error sending push request:', error);
   }
 }
+
+
+
+
+
+   
+  
     useEffect(() => {
       /* global google */
       google.accounts.id.initialize({
@@ -180,6 +189,10 @@ const UserSignup = ({ onSubmit }) => {
           </button>
 
           <Link to={'/userlogin'} className="btn"  > Login </Link>
+
+          {successMessage && <p className="success-message">{successMessage}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
+     
           <div className="Google">
             <div id="signInDiv"></div>
 
@@ -199,9 +212,6 @@ const UserSignup = ({ onSubmit }) => {
         </div>
 
       </form>
-     
-
-        
       </div>
     </div>
   </div>

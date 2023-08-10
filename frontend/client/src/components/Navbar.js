@@ -34,10 +34,10 @@ const NavBar = () => {
             <Link to="/">Home</Link>
           </li>
           <li className="nav-item">
-            <Link to="/">About Us</Link>
+            <Link to="/donate">Donate</Link>
           </li>
           <li className="nav-item">
-            <Link to="/">FAQs</Link>
+            <Link to="/register">Register</Link>
           </li>
           <li className="nav-item">
             <Link to="/ngolist">Listed Ngos</Link>
