@@ -1,10 +1,6 @@
-import React, { useState } from 'react';
-
-import { useEffect} from 'react';
-import jwt_decode from "jwt-decode"
-
+import React, { useState, useEffect } from 'react';
+import jwt_decode from "jwt-decode";
 import axios from 'axios';
-
 
 const UserSignup = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
@@ -13,6 +9,9 @@ const UserSignup = ({ onSubmit }) => {
     password: '',
     confirmPassword: '',
   });
+
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,17 +22,20 @@ const UserSignup = ({ onSubmit }) => {
     e.preventDefault();
   
     if (formData.password !== formData.confirmPassword) {
-      console.error('Passwords do not match');
+      setErrorMessage('Passwords do not match');
       return;
     }
   
     try {
+      // eslint-disable-next-line
       const response = await axios.post('/ngoconnect/addusers', formData, {
         headers: {
-          'Content-Type': 'application/json' // Set the content type to JSON
+          'Content-Type': 'application/json'
         }
       });
-      console.log(response.data);
+  
+      setSuccessMessage('Account successfully created');
+      setErrorMessage('');
   
       setFormData({
         fullname: '',
@@ -41,17 +43,14 @@ const UserSignup = ({ onSubmit }) => {
         password: '',
         confirmPassword: '',
       });
+
+      onSubmit(formData);
+  
     } catch (error) {
-      console.error('Error adding user:', error);
-      // Handle error cases here
+      setErrorMessage('Error adding user: Password must contain atleast 8 characters,an uppercase and a digit!');
+      setSuccessMessage('');
     }
-  
-    onSubmit(formData);
-
-  
   };
-  
-
   const [user, setUser] = useState({})
 
 
@@ -203,7 +202,7 @@ const UserSignup = ({ onSubmit }) => {
             
             { user &&
               <div>
-                <img src={user.picture} alt="userpicture"/>
+                <img src={user.picture} alt="userprofile"/>
                 <h3>{user.name}</h3>
               </div>
 
@@ -214,6 +213,8 @@ const UserSignup = ({ onSubmit }) => {
         </div>
 
       </form>
+      {successMessage && <p className="success-message">{successMessage}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
      
 
         
