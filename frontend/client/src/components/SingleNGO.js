@@ -53,6 +53,10 @@ const NGODetails = () => {
     return <div>No data available</div>; // Handle the case where ngoData is not available
   }
 
+  // const visitWebsite = () => {
+  //   window.location.href = ngoData.url; // Redirect to the URL stored in ngoData.url
+  // };
+
   return (
     <div className="ngodetails">
       <div className="image-container">
@@ -73,7 +77,7 @@ const NGODetails = () => {
               </p>
               <p>Description: {ngoData.description}</p>
               <div>
-              <button  onclick="window.location.href = '{{ngoData.url}}';"  className="btn ">Visit Website</button>  <Link  to={'/donate'}className="btn" > Donate </Link>  <Link className="btn"> Volunteer </Link>
+              <a href={ngoData.url} target="_blank" className="btn ">Visit Website</a>  <Link  to={'/donate'}className="btn" > Donate </Link>  <Link className="btn"> Volunteer </Link>
 
 
               </div>

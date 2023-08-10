@@ -11,12 +11,17 @@ const NGOList = () => {
   const itemsPerPage = 5;
   const accessToken = localStorage.getItem('access_token');
   const isLoggedIn = accessToken !== null;
+  const [selectedCategory, setSelectedCategory] = useState('Choose Category');
 
   useEffect(() => {
     if (isLoggedIn) {
       fetchNgos();
     }
   }, [isLoggedIn]);
+
+  useEffect(() => {
+    setCurrentPage(1); // Reset the current page when category changes
+  }, [selectedCategory]);
 
   const fetchNgos = async () => {
     try {
@@ -36,6 +41,10 @@ const NGOList = () => {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentNgos = ngos.slice(indexOfFirstItem, indexOfLastItem);
+
+  const filteredNgos = selectedCategory === 'Choose Category'
+    ? currentNgos
+    : currentNgos.filter((ngo) => ngo.category === selectedCategory);
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -73,7 +82,7 @@ const NGOList = () => {
           <div className="col-md-8">
 
           <div className="card-deck">
-                {currentNgos.map(ngo => (
+                {filteredNgos.map(ngo => (
                   <div key={ngo.id} className='card mb-4 overflow-hidden' >
                     <div className="row g-0">
                       <div className="col-md-4">
@@ -102,7 +111,7 @@ const NGOList = () => {
           </div>
           <div className="col-md-4">
             <h2>Categories</h2>
-            <select className="form-select">
+            <select className="form-select" onChange={(e) => setSelectedCategory(e.target.value)}>
               {categories.map((category, index) => (
                 <option key={index} value={category}>{category}</option>
               ))}

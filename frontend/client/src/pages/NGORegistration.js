@@ -104,7 +104,7 @@ const NGORegister = () => {
           </div>
           <div className="input-container">
           <p className='guide'> Give a description of what your organization</p>
-          <input
+          <textarea
           id="text"
           type="text"
           name="description"
