@@ -7,6 +7,12 @@ from app import db
 from flask_restful import reqparse
 from flask_jwt_extended import jwt_required, current_user
 
+
+class CountNgo(Resource):
+    def get(self):
+        ngo_count = NGO.query.count()
+        return {"ngo_count": ngo_count}, 200
+
 class  ViewAllNgo(Resource):
     @jwt_required()
     def get(self):

@@ -12,6 +12,7 @@
   position: relative;
   margin-bottom: 100px;
   background-size: cover;
+  width: 100%;
   background-color: var(--devider);
   border-bottom: solid 1px var(--other);
 }

@@ -2,7 +2,7 @@ from flask import Blueprint
 from flask_restful import Api
 
 
-from Server.views.ngo import ViewAllNgo,ViewNgoById,RegisterNgo
+from Server.views.ngo import ViewAllNgo,ViewNgoById,RegisterNgo,CountNgo
 from Server.views.users import GetAllUsers,AddUser,UserResourcesById,UserLogin, RoleResource
 from Server.views.reviews import GetAllReviews,ReviewsResource,AddReview
 from Server.views.voluteer import AllVolunteers,AddVolunteers,VolunteerResource
@@ -17,7 +17,7 @@ from Server.views.success import SuccessesResource,SuccessesListResource
 api_endpoints = Blueprint('auth', __name__, url_prefix='/ngoconnect')
 api = Api(api_endpoints)
 
-
+api.add_resource(CountNgo, '/ngonumber')
 api.add_resource(ViewAllNgo, '/ngolist')
 api.add_resource(RegisterNgo, '/register')
 api.add_resource(ViewNgoById, '/ngo/<int:ngo_id>')
