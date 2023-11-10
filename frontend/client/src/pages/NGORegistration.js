@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import axios from "axios";
+import NgoCount from "../components/registrationcount";
 import '../styling/registration.css';
 
 const NGORegister = () => {
@@ -12,6 +13,7 @@ const NGORegister = () => {
     const [category, setCategory] = useState("");
     const [image, setImage] = useState("");
     const [url, setUrl] = useState("");
+    const [registrationSuccess, setRegistrationSuccess] = useState(false);
   
 
   function handleImage(e) {
@@ -35,12 +37,9 @@ const NGORegister = () => {
         console.log("Image uploaded successfully:");
         setImage(res.data.secure_url);
 
-       
-       
-
         axios
-          .post("http://localhost:5000/ngoconnect/register", {
-            image,
+          .post("/ngoconnect/register", {
+            image: image,
             name,
             description,
             location,
@@ -50,10 +49,12 @@ const NGORegister = () => {
           })
           .then((response) => {
             console.log("register success, data stored:", response.data.message);
+            setRegistrationSuccess(true);
           })
           .catch((error) => {
             console.error("Error storing image data:", error);
           });
+          
       
       })
       .catch((error) => {
@@ -65,45 +66,38 @@ const NGORegister = () => {
     <div>
       <div>
 
-        <div className="container-fluid h-100" id="signuppage">
-          <div className="row h-100">
-          <div className="col-12 col-md-6 bg-image-container d-none d-md-block">
-          <img src="/images/ngo-reister.jpg" alt="signup " className="img-fluid" />
-          </div>
-
-
-          <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
-          <form className="form-width">
+        <div className="container-fluid h-auto" id="signuppage">
+          <div className="row">
+          <div className="col-12 col-md-8 d-flex align-items-center justify-content-center">
+          <form className="">
           <h2>Ngo Registration</h2>
 
-          <p> Fill in the form bellow to enlist your NGO<br></br>
-              <span>All filed are mandatory to fill in.</span>
+          <p> Fill in the form bellow to enlist your NGO <span>(All fields are mandatory)</span>
             </p>
-
-
           {/* ... (existing input fields) */}
+          
           <div className="input-container">
             <input
-            type="text"
-            name="name"
-            placeholder="Ngo Name"
-            value={name}
-            onChange={(e)=>setName(e.target.value)}
-            required
+              type="text"
+              name="name"
+              placeholder="Ngo Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
             />
-            </div>
-          <div className="input-container">
+
             <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e)=>setEmail(e.target.value)}
-            required
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
+
           <div className="input-container">
-          <p className='guide'> Give a description of what your organization</p>
+          <p className='guide'> Give a description of your organization <span>(atleas 2 paragraphs)</span></p>
           <textarea
           id="text"
           type="text"
@@ -114,6 +108,7 @@ const NGORegister = () => {
           required
           />
           </div>
+
           <div className="input-container">
           <input
           type="text"
@@ -124,8 +119,9 @@ const NGORegister = () => {
           required
           />
           </div>
+
           <div className="input-container">
-          <p className='guide'> Choose wgich field  your Ngo helps in</p>
+          <p className='guide'> Choose which field  your NGO helps in</p>
           <select
           name="category"
           value={category}
@@ -144,6 +140,7 @@ const NGORegister = () => {
 
 
           <div className="input-container">
+          <p className='guide'>Give a link to your website or any socials <span>(proof of existance)</span></p>
             <input
               type="text"
               name="url"
@@ -158,12 +155,23 @@ const NGORegister = () => {
 
           <div className="input-container">
           <button onClick={handleApi} type="submit" className="btn btn-block button-width" id="spacing">Register</button>
-          <Link to='/' className="btn btn" id="reg-button">Home</Link>
+          </div>
+          
+        
+          </form>
+
           </div>
 
-          
-          </form>
+          <div className="col-12 col-md-4 bg-image-container d-none d-md-block">
+          <NgoCount/>
+          {registrationSuccess && (
+          <div className="success-message">
+            NGO registered successfully! Thank you for your registration.
           </div>
+        )}
+          
+          </div>
+        
           </div>
           </div>
                 </div>

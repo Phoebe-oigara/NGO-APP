@@ -75,7 +75,8 @@ const NGODetails = () => {
               <p>
                 Category: <span>{ngoData.category} </span> |  Location: <span>{ngoData.location} </span>| Email: <span>{ngoData.email}</span>
               </p>
-              <p>Description: {ngoData.description}</p>
+              <h3>What we do</h3>
+              <p>{ngoData.description}</p>
               <div>
               <a href={ngoData.url} target="_blank" className="btn ">Visit Website</a>  <Link  to={'/donate'}className="btn" > Donate </Link>  <Link className="btn"> Volunteer </Link>
 
@@ -85,9 +86,9 @@ const NGODetails = () => {
               <div className='review'>
                 <h3> Leave a review</h3>
               <form>
-                <input type="text" />
-                <input type="text" />
-                <input type="text" />
+                <textarea type="text" />
+                <input className="btn review-sub" type='submit' />
+                
               </form>
               </div>
               
